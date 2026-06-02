@@ -2,41 +2,26 @@
 {
   "date": "2026-06-01",
 
-  "inputCoils": 2073.75,
-  "inputQty": 121,
-  "pickling": 2025.87,
-  "rolling": 1872.57,
-  "galvanized": 1035.38,
-  "sold": 251.26,
+  "inputCoils": 2073,
 
-  "picklingYield": "100%",
-  "rollingYield": "53.6%",
-  "galvanizingYield": "97.4%",
-  "coilYield": "96.5%",
+  "galvanized": 1035,
 
-  "domesticSales": 180,
-  "exportSales": 71.26,
-  "totalSales": 251.26,
-  "readyInvoice": 130,
+  "totalSales": 251,
 
-  "readyShip": 758.17,
-  "dispatched": 500,
-  "pendingTrucks": 6,
   "shipmentStatus": "NORMAL",
 
-  "unpickled": 47.88,
-  "pickled": 153.30,
-  "rolled": 837.19,
+  "picklingYield": "100%",
 
-  "factoryInput": 2073.75,
-  "finalProduct": 1009.17,
-  "warehouseWip": 1035.38,
-  "totalScrap": 56.13,
+  "rollingYield": "53%",
+
+  "galvanizingYield": "97%",
+
+  "coilYield": "96%",
 
   "history": [
 
     {
-      "date": "2026-05-25",
+      "date": "05-25",
       "input": 1750,
       "pickling": 1700,
       "rolling": 1550,
@@ -45,7 +30,7 @@
     },
 
     {
-      "date": "2026-05-26",
+      "date": "05-26",
       "input": 1780,
       "pickling": 1720,
       "rolling": 1580,
@@ -54,7 +39,7 @@
     },
 
     {
-      "date": "2026-05-27",
+      "date": "05-27",
       "input": 1820,
       "pickling": 1760,
       "rolling": 1620,
@@ -63,7 +48,7 @@
     },
 
     {
-      "date": "2026-05-28",
+      "date": "05-28",
       "input": 1880,
       "pickling": 1810,
       "rolling": 1660,
@@ -72,7 +57,7 @@
     },
 
     {
-      "date": "2026-05-29",
+      "date": "05-29",
       "input": 1950,
       "pickling": 1880,
       "rolling": 1700,
@@ -81,7 +66,7 @@
     },
 
     {
-      "date": "2026-05-30",
+      "date": "05-30",
       "input": 2050,
       "pickling": 1980,
       "rolling": 1800,
@@ -90,16 +75,14 @@
     },
 
     {
-      "date": "2026-06-01",
-      "input": 2073.75,
-      "pickling": 2025.87,
-      "rolling": 1872.57,
-      "galvanized": 1035.38,
-      "sold": 251.26
+      "date": "06-01",
+      "input": 2073,
+      "pickling": 2025,
+      "rolling": 1872,
+      "galvanized": 1035,
+      "sold": 251
     }
 
   ]
 }
-
-
 
