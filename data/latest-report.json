@@ -1,3 +1,4 @@
+
 {
   "reportInfo": {
     "title": "AKA Coil Processing Report",
@@ -77,3 +78,35 @@
     "Production progress compared to plan reached 100% as of 2026-05-28."
   ]
 }
+
+{
+  "cumulativeProductionReport": [
+
+    {
+      "date":"2026-05-10",
+      "pickling":425.41,
+      "rolling":282.956,
+      "galvanized":32.925,
+      "sold":0
+    },
+
+    {
+      "date":"2026-05-11",
+      "pickling":544.37,
+      "rolling":298.926,
+      "galvanized":129.19,
+      "sold":0
+    },
+
+    {
+      "date":"2026-05-12",
+      "pickling":544.37,
+      "rolling":298.926,
+      "galvanized":129.19,
+      "sold":0
+    }
+
+  ]
+}
+
+
