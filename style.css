@@ -482,3 +482,62 @@ body{
     color:#FF5B6E;
 
 }
+
+/* EXECUTIVE SUMMARY */
+
+.summary-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(6,1fr);
+
+    gap:18px;
+
+    margin-bottom:28px;
+
+}
+
+.summary-card{
+
+    background:#0F1722;
+
+    border-radius:20px;
+
+    padding:24px;
+
+    border:1px solid rgba(255,255,255,.05);
+
+}
+
+.summary-label{
+
+    color:#8EA4C1;
+
+    font-size:13px;
+
+    margin-bottom:14px;
+
+    letter-spacing:1px;
+
+}
+
+.summary-value{
+
+    font-size:32px;
+
+    font-weight:800;
+
+    color:white;
+
+}
+
+.summary-value span{
+
+    font-size:14px;
+
+    color:#8EA4C1;
+
+    margin-left:6px;
+
+}
