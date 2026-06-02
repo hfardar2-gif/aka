@@ -4,23 +4,23 @@
 
 <head>
 
-<meta charset="UTF-8" />
+<meta charset="UTF-8"/>
 
 <meta
 name="viewport"
 content="width=device-width, initial-scale=1.0"
 />
 
-<title>AKA Smart Factory</title>
-
-<link
-href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-rel="stylesheet"
-/>
+<title>AKA Executive Factory MIS</title>
 
 <link
 rel="stylesheet"
 href="style.css"
+/>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+rel="stylesheet"
 />
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -35,9 +35,9 @@ href="style.css"
 
 <aside class="sidebar">
 
-<div class="logo">
+<div class="brand">
 
-<div class="logo-box">
+<div class="brand-box">
 A
 </div>
 
@@ -48,7 +48,7 @@ AKA Factory
 </h1>
 
 <p>
-Smart Command Center
+Executive MIS
 </p>
 
 </div>
@@ -70,11 +70,15 @@ Yield
 </a>
 
 <a>
+Sales
+</a>
+
+<a>
 Shipment
 </a>
 
 <a>
-Analytics
+Management
 </a>
 
 </nav>
@@ -99,8 +103,8 @@ Factory Online
 
 <div>
 
-<h2>
-Executive Dashboard
+<h2 id="dashboardTitle">
+Executive Factory MIS
 </h2>
 
 <p id="reportDate">
@@ -119,8 +123,8 @@ Loading...
 🇨🇳 中文
 </button>
 
-<button onclick="exportPDF()">
-📄 PDF
+<button onclick="window.print()">
+📄 Export PDF
 </button>
 
 <button onclick="location.reload()">
@@ -138,7 +142,7 @@ Loading...
 <div class="card kpi-card">
 
 <p>
-Input
+Input Coils
 </p>
 
 <h3 id="inputCoils">
@@ -146,7 +150,7 @@ Input
 </h3>
 
 <span>
-Daily Coil Input
+Daily Material Input
 </span>
 
 </div>
@@ -162,7 +166,7 @@ Galvanized
 </h3>
 
 <span>
-Final Production
+Finished Production
 </span>
 
 </div>
@@ -170,7 +174,7 @@ Final Production
 <div class="card kpi-card">
 
 <p>
-Sales
+Total Sales
 </p>
 
 <h3 id="totalSales">
@@ -178,7 +182,7 @@ Sales
 </h3>
 
 <span>
-Shipment Revenue
+Daily Revenue
 </span>
 
 </div>
@@ -194,8 +198,90 @@ NORMAL
 </h3>
 
 <span>
-Realtime Logistics
+Logistics Status
 </span>
+
+</div>
+
+</section>
+
+<!-- PRODUCTION FLOW -->
+
+<section class="card">
+
+<div class="section-title">
+
+<h3>
+Production Flow
+</h3>
+
+<span>
+Realtime Factory Flow
+</span>
+
+</div>
+
+<div class="flow-grid">
+
+<div class="flow-box">
+
+<h4>
+Input
+</h4>
+
+<h2 id="flowInput">
+0
+</h2>
+
+</div>
+
+<div class="flow-box">
+
+<h4>
+Pickling
+</h4>
+
+<h2 id="flowPickling">
+0
+</h2>
+
+</div>
+
+<div class="flow-box">
+
+<h4>
+Rolling
+</h4>
+
+<h2 id="flowRolling">
+0
+</h2>
+
+</div>
+
+<div class="flow-box">
+
+<h4>
+Galvanizing
+</h4>
+
+<h2 id="flowGalvanizing">
+0
+</h2>
+
+</div>
+
+<div class="flow-box">
+
+<h4>
+Packing
+</h4>
+
+<h2 id="flowPacking">
+0
+</h2>
+
+</div>
 
 </div>
 
@@ -210,7 +296,7 @@ Realtime Logistics
 <div class="line-head">
 
 <h4>
-Pickling
+Pickling Line
 </h4>
 
 <div class="pulse green"></div>
@@ -222,7 +308,7 @@ RUNNING
 </h2>
 
 <p>
-Speed 120 m/min
+Speed: 120 m/min
 </p>
 
 </div>
@@ -244,7 +330,7 @@ WARNING
 </h2>
 
 <p>
-Temperature Alert
+Temperature High
 </p>
 
 </div>
@@ -347,20 +433,162 @@ NORMAL
 
 </section>
 
+<!-- SALES + SHIPMENT -->
+
+<section class="double-grid">
+
+<div class="card">
+
+<div class="section-title">
+
+<h3>
+Sales Center
+</h3>
+
+<span>
+Commercial Operations
+</span>
+
+</div>
+
+<div class="info-grid">
+
+<div class="info-box">
+
+<p>
+Domestic
+</p>
+
+<h2 id="domesticSales">
+0
+</h2>
+
+</div>
+
+<div class="info-box">
+
+<p>
+Export
+</p>
+
+<h2 id="exportSales">
+0
+</h2>
+
+</div>
+
+<div class="info-box">
+
+<p>
+Invoice Ready
+</p>
+
+<h2 id="invoiceReady">
+0
+</h2>
+
+</div>
+
+<div class="info-box">
+
+<p>
+Pending Orders
+</p>
+
+<h2 id="pendingOrders">
+0
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="section-title">
+
+<h3>
+Shipment Center
+</h3>
+
+<span>
+Logistics Operations
+</span>
+
+</div>
+
+<div class="info-grid">
+
+<div class="info-box">
+
+<p>
+Ready Shipment
+</p>
+
+<h2 id="readyShipment">
+0
+</h2>
+
+</div>
+
+<div class="info-box">
+
+<p>
+Dispatched
+</p>
+
+<h2 id="dispatched">
+0
+</h2>
+
+</div>
+
+<div class="info-box">
+
+<p>
+Pending Trucks
+</p>
+
+<h2 id="pendingTrucks">
+0
+</h2>
+
+</div>
+
+<div class="info-box">
+
+<p>
+Containers
+</p>
+
+<h2 id="containers">
+0
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+```html id="factory-mis-index2-code"
 <!-- CHARTS -->
 
 <section class="charts-grid">
 
-<div class="card chart-card">
+<div class="card">
 
-<div class="card-title">
+<div class="section-title">
 
 <h3>
 Production Trend
 </h3>
 
 <span>
-7 Days
+7 Days Analysis
 </span>
 
 </div>
@@ -369,16 +597,16 @@ Production Trend
 
 </div>
 
-<div class="card chart-card">
+<div class="card">
 
-<div class="card-title">
+<div class="section-title">
 
 <h3>
 Yield Performance
 </h3>
 
 <span>
-Realtime
+Realtime KPI
 </span>
 
 </div>
@@ -389,18 +617,118 @@ Realtime
 
 </section>
 
-<!-- TABLE -->
+<!-- MANAGEMENT NOTES -->
 
-<section class="card table-card">
+<section class="double-grid">
 
-<div class="card-title">
+<div class="card">
+
+<div class="section-title">
 
 <h3>
-Production History
+Management Notes
 </h3>
 
 <span>
-Cumulative Report
+Executive Summary
+</span>
+
+</div>
+
+<div class="notes-box">
+
+<div class="note">
+
+<h4>
+Production
+</h4>
+
+<p id="productionNote">
+Rolling stable. Zinc consumption optimized.
+</p>
+
+</div>
+
+<div class="note">
+
+<h4>
+Sales
+</h4>
+
+<p id="salesNote">
+Export demand increased this week.
+</p>
+
+</div>
+
+<div class="note">
+
+<h4>
+Maintenance
+</h4>
+
+<p id="maintenanceNote">
+Rolling inspection scheduled tonight.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="section-title">
+
+<h3>
+KPI Alarm Center
+</h3>
+
+<span>
+Critical Monitoring
+</span>
+
+</div>
+
+<div class="alarm-list">
+
+<div class="alarm-item green-alarm">
+
+🟢 Pickling Stable
+
+</div>
+
+<div class="alarm-item yellow-alarm">
+
+🟡 Rolling Temperature Warning
+
+</div>
+
+<div class="alarm-item red-alarm">
+
+🔴 Shipment Delay Risk
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- TABLE -->
+
+<section class="card">
+
+<div class="section-title">
+
+<h3>
+Cumulative Production Report
+</h3>
+
+<span>
+Historical Factory Data
 </span>
 
 </div>
@@ -443,4 +771,5 @@ Cumulative Report
 </body>
 
 </html>
+
 
