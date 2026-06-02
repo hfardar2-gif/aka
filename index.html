@@ -6,128 +6,134 @@
     <title>AKA Executive Factory MIS</title>
     <link rel="stylesheet" href="style.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
 <div class="layout">
-
     <aside class="sidebar">
         <div class="brand">
-            <div class="brand-box">A</div>
+            <div class="brand-box">AKA</div>
             <div>
-                <h1>AKA Factory</h1>
-                <p>Executive MIS</p>
+                <h1>کارخانه آکا</h1>
+                <p>سیستم مدیریت اجرایی</p>
             </div>
         </div>
 
         <nav>
-            <a href="#" class="nav-item active" data-page="dashboard">📊 داشبورد</a>
-            <a href="#" class="nav-item" data-page="production">⚙️ تولید</a>
-            <a href="#" class="nav-item" data-page="yield">📈 بازده</a>
-            <a href="#" class="nav-item" data-page="sales">💰 فروش و ارسال</a>
+            <a href="#" class="nav-item active" data-page="dashboard"><i class="fas fa-home"></i> داشبورد</a>
+            <a href="#" class="nav-item" data-page="production"><i class="fas fa-industry"></i> تولید</a>
+            <a href="#" class="nav-item" data-page="yield"><i class="fas fa-chart-line"></i> بازده</a>
+            <a href="#" class="nav-item" data-page="sales"><i class="fas fa-truck"></i> فروش و ارسال</a>
         </nav>
     </aside>
 
     <main class="main">
-
         <div class="topbar">
             <div>
                 <h2>گزارش روزانه کارخانه</h2>
-                <p id="reportDate">02 June 2026</p>
+                <p id="reportDate">۱۴۰۵/۰۳/۰۲ - ۲۰۲۶-۰۶-۰۲</p>
+            </div>
+            <div>
+                <select id="dateFilter">
+                    <option value="2026-06-02">۰۲ خرداد ۱۴۰۵</option>
+                    <!-- بعداً روزهای دیگر اضافه می‌شود -->
+                </select>
             </div>
         </div>
 
         <!-- DASHBOARD -->
         <div id="dashboard" class="page">
             <section class="kpi-grid">
-                <div class="card kpi-card">
-                    <p>ورودی کلاف (تن)</p>
+                <div class="card kpi-card blue">
+                    <i class="fas fa-coil"></i>
+                    <p>ورودی کلاف</p>
                     <h3 id="inputCoils">2073.75</h3>
+                    <span>تن</span>
                 </div>
-                <div class="card kpi-card">
-                    <p>تولید گالوانیزه (تن)</p>
+                <div class="card kpi-card cyan">
+                    <i class="fas fa-fire"></i>
+                    <p>اسیدشویی</p>
+                    <h3 id="pickling">2025.87</h3>
+                    <span>تن</span>
+                </div>
+                <div class="card kpi-card purple">
+                    <i class="fas fa-compress"></i>
+                    <p>نورد</p>
+                    <h3 id="rolling">1872.57</h3>
+                    <span>تن</span>
+                </div>
+                <div class="card kpi-card amber">
+                    <i class="fas fa-shield-alt"></i>
+                    <p>گالوانیزه</p>
                     <h3 id="galvanized">1035.39</h3>
-                </div>
-                <div class="card kpi-card">
-                    <p>فروخته شده (تن)</p>
-                    <h3 id="sold">251.26</h3>
-                </div>
-                <div class="card kpi-card">
-                    <p>آماده ارسال</p>
-                    <h3 id="readyToShip">757.92</h3>
+                    <span>تن</span>
                 </div>
             </section>
         </div>
 
-        <!-- PRODUCTION PAGE -->
+        <!-- PRODUCTION -->
         <div id="production" class="page hidden">
-            <h1>وضعیت تولید</h1>
-            <div class="grid">
-                <div class="card">
-                    <h3>ورودی کارخانه</h3>
-                    <h2>2073.75 تن</h2>
-                </div>
-                <div class="card">
-                    <h3>اسیدشویی</h3>
-                    <h2>2025.87 تن</h2>
-                </div>
-                <div class="card">
-                    <h3>نورد</h3>
-                    <h2>1872.57 تن</h2>
-                </div>
-                <div class="card">
-                    <h3>گالوانیزه</h3>
-                    <h2>1035.39 تن</h2>
-                </div>
-            </div>
-            <canvas id="productionChart" height="110"></canvas>
+            <h1><i class="fas fa-industry"></i> وضعیت تولید</h1>
+            <canvas id="cumulativeChart" height="140"></canvas>
         </div>
 
-        <!-- YIELD PAGE -->
+        <!-- YIELD -->
         <div id="yield" class="page hidden">
-            <h1>بازده (Yield)</h1>
+            <h1><i class="fas fa-chart-line"></i> بازده تولید</h1>
             <div class="grid">
                 <div class="card">
                     <h3>بازده اسیدشویی</h3>
-                    <h2>100%</h2>
+                    <h2 class="success">۱۰۰٪</h2>
                 </div>
                 <div class="card">
                     <h3>بازده نورد</h3>
-                    <h2>53.69%</h2>
+                    <h2 class="warning">۵۳.۶۹٪</h2>
                 </div>
                 <div class="card">
                     <h3>بازده گالوانیزه</h3>
-                    <h2>97.47%</h2>
+                    <h2 class="success">۹۷.۴۷٪</h2>
                 </div>
                 <div class="card">
-                    <h3>بازده کلی کلاف به کلاف</h3>
-                    <h2>96.57%</h2>
+                    <h3>بازده کلی (کلاف به کلاف)</h3>
+                    <h2 class="success">۹۶.۵۷٪</h2>
                 </div>
             </div>
-            <canvas id="yieldChart" height="130"></canvas>
         </div>
 
-        <!-- SALES PAGE -->
+        <!-- SALES -->
         <div id="sales" class="page hidden">
-            <h1>فروش و ارسال</h1>
+            <h1><i class="fas fa-truck"></i> فروش و ارسال</h1>
             <div class="grid">
                 <div class="card">
                     <h3>آماده ارسال</h3>
-                    <h2>757.92 تن</h2>
+                    <h2>۷۵۷.۹۲ تن</h2>
                 </div>
                 <div class="card">
-                    <h3>فروخته شده تا امروز</h3>
-                    <h2>251.26 تن</h2>
+                    <h3>فروخته شده</h3>
+                    <h2>۲۵۱.۲۶ تن</h2>
                 </div>
                 <div class="card">
-                    <h3>موجودی انبار + WIP</h3>
-                    <h2>1035.39 تن</h2>
+                    <h3>اسکرپ و ضایعات</h3>
+                    <h2>۵۶.۱۴ تن</h2>
                 </div>
             </div>
-            <canvas id="salesChart" height="130"></canvas>
+            <h3>لیست کلاف‌های گالوانیزه</h3>
+            <div class="table-container">
+                <table id="coilsTable">
+                    <thead>
+                        <tr>
+                            <th>شماره کلاف</th>
+                            <th>ضخامت</th>
+                            <th>وزن (kg)</th>
+                            <th>وضعیت</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
         </div>
-
     </main>
 </div>
 

@@ -2,7 +2,6 @@
 function initNavigation() {
     document.querySelectorAll('.nav-item').forEach(item => {
         item.addEventListener('click', (e) => {
-            e.preventDefault();
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             item.classList.add('active');
 
@@ -12,53 +11,64 @@ function initNavigation() {
     });
 }
 
-// Charts
-function createProductionChart() {
-    new Chart(document.getElementById('productionChart'), {
-        type: 'bar',
+// Cumulative Production Trend Chart
+function createCumulativeChart() {
+    new Chart(document.getElementById('cumulativeChart'), {
+        type: 'line',
         data: {
             labels: ['اسیدشویی', 'نورد', 'گالوانیزه'],
             datasets: [{
-                label: 'تناژ',
+                label: 'تولید تجمعی (تن)',
                 data: [2025.87, 1872.57, 1035.39],
-                backgroundColor: ['#22d3ee', '#a855f7', '#eab308']
+                borderColor: '#22d3ee',
+                backgroundColor: 'rgba(34, 211, 238, 0.1)',
+                tension: 0.4,
+                borderWidth: 4,
+                pointRadius: 6
             }]
         },
-        options: { responsive: true, plugins: { legend: { display: false }}}
-    });
-}
-
-function createYieldChart() {
-    new Chart(document.getElementById('yieldChart'), {
-        type: 'doughnut',
-        data: {
-            labels: ['اسیدشویی', 'نورد', 'گالوانیزه', 'کلاف به کلاف'],
-            datasets: [{
-                data: [100, 53.69, 97.47, 96.57],
-                backgroundColor: ['#22c55e', '#eab308', '#06b6d4', '#8b5cf6']
-            }]
-        },
-        options: { responsive: true }
-    });
-}
-
-function createSalesChart() {
-    new Chart(document.getElementById('salesChart'), {
-        type: 'pie',
-        data: {
-            labels: ['آماده ارسال', 'فروخته شده', 'WIP'],
-            datasets: [{
-                data: [757.92, 251.26, 1035.39],
-                backgroundColor: ['#22d3ee', '#f59e0b', '#64748b']
-            }]
+        options: {
+            responsive: true,
+            plugins: { legend: { display: true, position: 'top' } },
+            scales: { y: { beginAtZero: true } }
         }
+    });
+}
+
+// Fill Galvanized Coils Table (نمونه از شیت Product list)
+function fillCoilsTable() {
+    const tbody = document.querySelector('#coilsTable tbody');
+    tbody.innerHTML = '';
+
+    const sampleCoils = [
+        {id: "52507005503", thick: "1", weight: "5510", status: "انبار"},
+        {id: "52507005502", thick: "1", weight: "5555", status: "انبار"},
+        {id: "52507005501", thick: "1", weight: "5445", status: "انبار"},
+        {id: "52506020503", thick: "0.7", weight: "5175", status: "انبار"},
+        {id: "52512004503", thick: "0.6", weight: "5120", status: "انبار"},
+    ];
+
+    sampleCoils.forEach(coil => {
+        const row = `
+            <tr>
+                <td>${coil.id}</td>
+                <td>${coil.thick}</td>
+                <td>${coil.weight}</td>
+                <td><span class="status">${coil.status}</span></td>
+            </tr>`;
+        tbody.innerHTML += row;
     });
 }
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
-    createProductionChart();
-    createYieldChart();
-    createSalesChart();
+    createCumulativeChart();
+    fillCoilsTable();
+
+    // KPI values
+    document.getElementById('inputCoils').textContent = '2073.75';
+    document.getElementById('pickling').textContent = '2025.87';
+    document.getElementById('rolling').textContent = '1872.57';
+    document.getElementById('galvanized').textContent = '1035.39';
 });
