@@ -98,3 +98,39 @@ body{
 .orange-alert{
     background:rgba(255,176,32,.1);
 }
+/* LIVE STATUS */
+
+.live-dot{
+
+    width:10px;
+    height:10px;
+
+    border-radius:50%;
+
+    background:#00FFAE;
+
+    box-shadow:
+    0 0 10px #00FFAE,
+    0 0 20px #00FFAE;
+
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+
+    0%{
+        transform:scale(1);
+        opacity:1;
+    }
+
+    50%{
+        transform:scale(1.4);
+        opacity:.5;
+    }
+
+    100%{
+        transform:scale(1);
+        opacity:1;
+    }
+
+}

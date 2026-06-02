@@ -67,3 +67,54 @@ window.addEventListener('resize',()=>{
     pieChart.resize();
 
 });
+/* LIVE CLOCK */
+
+function updateClock(){
+
+    const now = new Date();
+
+    const time = now.toLocaleTimeString();
+
+    document.getElementById('liveClock')
+    .innerText = time;
+
+}
+
+setInterval(updateClock,1000);
+
+updateClock();
+function animateValue(id,start,end,duration){
+
+    let range = end - start;
+
+    let current = start;
+
+    let increment = end > start ? 1 : -1;
+
+    let stepTime = Math.abs(
+    Math.floor(duration / range)
+    );
+
+    const obj = document.getElementById(id);
+
+    let timer = setInterval(function(){
+
+        current += increment;
+
+        obj.innerHTML = current;
+
+        if(current == end){
+
+            clearInterval(timer);
+
+        }
+
+    }, stepTime);
+
+}
+animateValue(
+'productionValue',
+0,
+2073,
+2000
+);
