@@ -1,299 +1,92 @@
-
 let darkMode = true;
 
-document
-.getElementById('themeToggle')
-
-.addEventListener('click', () => {
-
-darkMode = !darkMode;
-
-if(darkMode){
-
-document.body.classList.remove('light-mode');
-
-}
-
-else{
-
-document.body.classList.add('light-mode');
-
-}
-
+document.getElementById('themeToggle').addEventListener('click', () => {
+    darkMode = !darkMode;
+    if (darkMode) {
+        document.body.classList.remove('light-mode');
+    } else {
+        document.body.classList.add('light-mode');
+    }
 });
 
 let chinese = false;
-
-document
-.getElementById('langToggle')
-
-.addEventListener('click', () => {
-
-chinese = !chinese;
-
-if(chinese){
-
-document.querySelector('.topbar h2').innerText =
-'智能工厂控制中心';
-
-}
-
-else{
-
-document.querySelector('.topbar h2').innerText =
-'Executive Dashboard';
-
-}
-
+document.getElementById('langToggle').addEventListener('click', () => {
+    chinese = !chinese;
+    const title = document.getElementById('dashboardTitle');
+    if (chinese) {
+        title.innerText = '智能工厂控制中心';
+    } else {
+        title.innerText = 'Executive Factory MIS';
+    }
 });
 
-function exportPDF(){
+// ====================== NAVIGATION ======================
+function initNavigation() {
+    const navItems = document.querySelectorAll('.nav-item');
+    const pages = document.querySelectorAll('.page');
 
-window.print();
+    navItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
 
+            navItems.forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+
+            const pageId = item.getAttribute('data-page');
+
+            pages.forEach(page => page.classList.add('hidden'));
+            document.getElementById(pageId).classList.remove('hidden');
+        });
+    });
 }
 
-function animateValue(id, end){
+// ====================== ANIMATION ======================
+function animateValue(id, end) {
+    let start = 0;
+    const duration = 1000;
+    const step = end / (duration / 16);
+    const obj = document.getElementById(id);
 
-let start = 0;
-
-const duration = 1000;
-
-const step = end / (duration / 16);
-
-const obj =
-document.getElementById(id);
-
-const counter = setInterval(() => {
-
-start += step;
-
-if(start >= end){
-
-start = end;
-
-clearInterval(counter);
-
+    const counter = setInterval(() => {
+        start += step;
+        if (start >= end) {
+            start = end;
+            clearInterval(counter);
+        }
+        obj.innerText = Math.floor(start).toLocaleString();
+    }, 16);
 }
 
-obj.innerText =
-Math.floor(start);
-
-},16);
-
-}
-
+// ====================== LOAD DATA ======================
 fetch('data.json')
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById('reportDate').innerText = data.date;
 
-.then(res => res.json())
+        animateValue('inputCoils', data.inputCoils);
+        animateValue('galvanized', data.galvanized);
+        animateValue('totalSales', data.totalSales);
 
-.then(data => {
+        document.getElementById('shipmentStatus').innerText = data.shipmentStatus;
 
-document.getElementById('reportDate').innerText =
-data.date;
+        // Production Chart
+        new Chart(document.getElementById('productionChart'), {
+            type: 'line',
+            data: {
+                labels: data.history.map(x => x.date),
+                datasets: [{
+                    label: 'Production',
+                    data: data.history.map(x => x.galvanized),
+                    borderColor: '#22d3ee',
+                    tension: 0.4
+                }]
+            },
+            options: { responsive: true, plugins: { legend: { display: false } } }
+        });
+    });
 
-animateValue(
-'inputCoils',
-data.inputCoils
-);
-
-animateValue(
-'galvanized',
-data.galvanized
-);
-
-animateValue(
-'totalSales',
-data.totalSales
-);
-
-document.getElementById('shipmentStatus').innerText =
-data.shipmentStatus;
-
-function setupYield(name,value){
-
-const num = parseFloat(value);
-
-const card =
-document.getElementById(name + 'Card');
-
-const valueEl =
-document.getElementById(name + 'Yield');
-
-const alarmEl =
-document.getElementById(name + 'Alarm');
-
-valueEl.innerText = value;
-
-if(num >= 95){
-
-valueEl.classList.add('good');
-
-alarmEl.innerText =
-'🟢 NORMAL';
-
-}
-
-else if(num >= 85){
-
-valueEl.classList.add('warn');
-
-alarmEl.innerText =
-'🟡 WARNING';
-
-}
-
-else{
-
-valueEl.classList.add('bad');
-
-alarmEl.innerText =
-'🔴 CRITICAL';
-
-}
-
-}
-
-setupYield(
-'pickling',
-data.picklingYield
-);
-
-setupYield(
-'rolling',
-data.rollingYield
-);
-
-setupYield(
-'galvanizing',
-data.galvanizingYield
-);
-
-setupYield(
-'coil',
-data.coilYield
-);
-
-const historyTable =
-document.getElementById('historyTable');
-
-data.history.forEach(row => {
-
-historyTable.innerHTML += `
-
-<tr>
-
-<td>${row.date}</td>
-<td>${row.input}</td>
-<td>${row.pickling}</td>
-<td>${row.rolling}</td>
-<td>${row.galvanized}</td>
-<td>${row.sold}</td>
-
-</tr>
-
-`;
-
+// Initialize everything
+document.addEventListener('DOMContentLoaded', () => {
+    initNavigation();
+    // Default page is dashboard
 });
-
-const labels =
-data.history.map(x => x.date);
-
-new Chart(
-
-document.getElementById('productionChart'),
-
-{
-
-type:'line',
-
-data:{
-
-labels:labels,
-
-datasets:[
-
-{
-
-label:'Input',
-
-data:data.history.map(x=>x.input),
-
-borderWidth:3,
-
-tension:0.4
-
-},
-
-{
-
-label:'Rolling',
-
-data:data.history.map(x=>x.rolling),
-
-borderWidth:3,
-
-tension:0.4
-
-},
-
-{
-
-label:'Galvanized',
-
-data:data.history.map(x=>x.galvanized),
-
-borderWidth:3,
-
-tension:0.4
-
-}
-
-]
-
-}
-
-}
-
-);
-
-new Chart(
-
-document.getElementById('yieldChart'),
-
-{
-
-type:'bar',
-
-data:{
-
-labels:labels,
-
-datasets:[
-
-{
-
-label:'Rolling Yield',
-
-data:[88,90,92,93,94,95,96]
-
-},
-
-{
-
-label:'Coil Yield',
-
-data:[94,95,95,96,96,96,97]
-
-}
-
-]
-
-}
-
-}
-
-);
-
-});
-

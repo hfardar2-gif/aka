@@ -1,775 +1,154 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8"/>
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
-/>
-
-<title>AKA Executive Factory MIS</title>
-
-<link
-rel="stylesheet"
-href="style.css"
-/>
-
-<link
-href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-rel="stylesheet"
-/>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>AKA Executive Factory MIS</title>
+    <link rel="stylesheet" href="style.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
 
 <div class="layout">
 
-<!-- SIDEBAR -->
-
-<aside class="sidebar">
-
-<div class="brand">
-
-<div class="brand-box">
-A
-</div>
-
-<div>
-
-<h1>
-AKA Factory
-</h1>
-
-<p>
-Executive MIS
-</p>
-
-</div>
-
-</div>
-
-<nav>
-
-<a class="active">
-Dashboard
-</a>
-
-<a>
-Production
-</a>
-
-<a>
-Yield
-</a>
-
-<a>
-Sales
-</a>
-
-<a>
-Shipment
-</a>
-
-<a>
-Management
-</a>
-
-</nav>
-
-<div class="sidebar-footer">
-
-<div class="status-dot"></div>
-
-Factory Online
-
-</div>
-
-</aside>
-
-<!-- MAIN -->
-
-<main class="main">
-
-<!-- TOPBAR -->
-
-<div class="topbar">
-
-<div>
-
-<h2 id="dashboardTitle">
-Executive Factory MIS
-</h2>
-
-<p id="reportDate">
-Loading...
-</p>
-
-</div>
-
-<div class="top-actions">
-
-<button id="themeToggle">
-🌙 Theme
-</button>
-
-<button id="langToggle">
-🇨🇳 中文
-</button>
-
-<button onclick="window.print()">
-📄 Export PDF
-</button>
-
-<button onclick="location.reload()">
-🔄 Refresh
-</button>
-
-</div>
-
-</div>
-
-<!-- KPI -->
-
-<section class="kpi-grid">
-
-<div class="card kpi-card">
-
-<p>
-Input Coils
-</p>
-
-<h3 id="inputCoils">
-0
-</h3>
-
-<span>
-Daily Material Input
-</span>
-
-</div>
-
-<div class="card kpi-card">
-
-<p>
-Galvanized
-</p>
-
-<h3 id="galvanized">
-0
-</h3>
-
-<span>
-Finished Production
-</span>
-
-</div>
-
-<div class="card kpi-card">
-
-<p>
-Total Sales
-</p>
-
-<h3 id="totalSales">
-0
-</h3>
-
-<span>
-Daily Revenue
-</span>
-
-</div>
-
-<div class="card kpi-card">
-
-<p>
-Shipment
-</p>
-
-<h3 id="shipmentStatus">
-NORMAL
-</h3>
-
-<span>
-Logistics Status
-</span>
-
-</div>
-
-</section>
-
-<!-- PRODUCTION FLOW -->
-
-<section class="card">
-
-<div class="section-title">
-
-<h3>
-Production Flow
-</h3>
-
-<span>
-Realtime Factory Flow
-</span>
-
-</div>
-
-<div class="flow-grid">
-
-<div class="flow-box">
-
-<h4>
-Input
-</h4>
-
-<h2 id="flowInput">
-0
-</h2>
-
-</div>
-
-<div class="flow-box">
-
-<h4>
-Pickling
-</h4>
-
-<h2 id="flowPickling">
-0
-</h2>
-
-</div>
-
-<div class="flow-box">
-
-<h4>
-Rolling
-</h4>
-
-<h2 id="flowRolling">
-0
-</h2>
-
-</div>
-
-<div class="flow-box">
-
-<h4>
-Galvanizing
-</h4>
-
-<h2 id="flowGalvanizing">
-0
-</h2>
-
-</div>
-
-<div class="flow-box">
-
-<h4>
-Packing
-</h4>
-
-<h2 id="flowPacking">
-0
-</h2>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- LINE STATUS -->
-
-<section class="line-grid">
-
-<div class="card line-card running">
-
-<div class="line-head">
-
-<h4>
-Pickling Line
-</h4>
-
-<div class="pulse green"></div>
-
-</div>
-
-<h2>
-RUNNING
-</h2>
-
-<p>
-Speed: 120 m/min
-</p>
-
-</div>
-
-<div class="card line-card warning">
-
-<div class="line-head">
-
-<h4>
-Rolling Mill
-</h4>
-
-<div class="pulse yellow"></div>
-
-</div>
-
-<h2>
-WARNING
-</h2>
-
-<p>
-Temperature High
-</p>
-
-</div>
-
-<div class="card line-card running">
-
-<div class="line-head">
-
-<h4>
-Galvanizing
-</h4>
-
-<div class="pulse green"></div>
-
-</div>
-
-<h2>
-RUNNING
-</h2>
-
-<p>
-Zinc Stable
-</p>
-
-</div>
-
-</section>
-
-<!-- YIELD -->
-
-<section class="yield-grid">
-
-<div id="picklingCard"
-class="card yield-card">
-
-<h4>
-Pickling Yield
-</h4>
-
-<h2 id="picklingYield">
-0%
-</h2>
-
-<p id="picklingAlarm">
-NORMAL
-</p>
-
-</div>
-
-<div id="rollingCard"
-class="card yield-card">
-
-<h4>
-Rolling Yield
-</h4>
-
-<h2 id="rollingYield">
-0%
-</h2>
-
-<p id="rollingAlarm">
-NORMAL
-</p>
-
-</div>
-
-<div id="galvanizingCard"
-class="card yield-card">
-
-<h4>
-Galvanizing Yield
-</h4>
-
-<h2 id="galvanizingYield">
-0%
-</h2>
-
-<p id="galvanizingAlarm">
-NORMAL
-</p>
-
-</div>
-
-<div id="coilCard"
-class="card yield-card">
-
-<h4>
-Coil Yield
-</h4>
-
-<h2 id="coilYield">
-0%
-</h2>
-
-<p id="coilAlarm">
-NORMAL
-</p>
-
-</div>
-
-</section>
-
-<!-- SALES + SHIPMENT -->
-
-<section class="double-grid">
-
-<div class="card">
-
-<div class="section-title">
-
-<h3>
-Sales Center
-</h3>
-
-<span>
-Commercial Operations
-</span>
-
-</div>
-
-<div class="info-grid">
-
-<div class="info-box">
-
-<p>
-Domestic
-</p>
-
-<h2 id="domesticSales">
-0
-</h2>
-
-</div>
-
-<div class="info-box">
-
-<p>
-Export
-</p>
-
-<h2 id="exportSales">
-0
-</h2>
-
-</div>
-
-<div class="info-box">
-
-<p>
-Invoice Ready
-</p>
-
-<h2 id="invoiceReady">
-0
-</h2>
-
-</div>
-
-<div class="info-box">
-
-<p>
-Pending Orders
-</p>
-
-<h2 id="pendingOrders">
-0
-</h2>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<div class="section-title">
-
-<h3>
-Shipment Center
-</h3>
-
-<span>
-Logistics Operations
-</span>
-
-</div>
-
-<div class="info-grid">
-
-<div class="info-box">
-
-<p>
-Ready Shipment
-</p>
-
-<h2 id="readyShipment">
-0
-</h2>
-
-</div>
-
-<div class="info-box">
-
-<p>
-Dispatched
-</p>
-
-<h2 id="dispatched">
-0
-</h2>
-
-</div>
-
-<div class="info-box">
-
-<p>
-Pending Trucks
-</p>
-
-<h2 id="pendingTrucks">
-0
-</h2>
-
-</div>
-
-<div class="info-box">
-
-<p>
-Containers
-</p>
-
-<h2 id="containers">
-0
-</h2>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-```html id="factory-mis-index2-code"
-<!-- CHARTS -->
-
-<section class="charts-grid">
-
-<div class="card">
-
-<div class="section-title">
-
-<h3>
-Production Trend
-</h3>
-
-<span>
-7 Days Analysis
-</span>
-
-</div>
-
-<canvas id="productionChart"></canvas>
-
-</div>
-
-<div class="card">
-
-<div class="section-title">
-
-<h3>
-Yield Performance
-</h3>
-
-<span>
-Realtime KPI
-</span>
-
-</div>
-
-<canvas id="yieldChart"></canvas>
-
-</div>
-
-</section>
-
-<!-- MANAGEMENT NOTES -->
-
-<section class="double-grid">
-
-<div class="card">
-
-<div class="section-title">
-
-<h3>
-Management Notes
-</h3>
-
-<span>
-Executive Summary
-</span>
-
-</div>
-
-<div class="notes-box">
-
-<div class="note">
-
-<h4>
-Production
-</h4>
-
-<p id="productionNote">
-Rolling stable. Zinc consumption optimized.
-</p>
-
-</div>
-
-<div class="note">
-
-<h4>
-Sales
-</h4>
-
-<p id="salesNote">
-Export demand increased this week.
-</p>
-
-</div>
-
-<div class="note">
-
-<h4>
-Maintenance
-</h4>
-
-<p id="maintenanceNote">
-Rolling inspection scheduled tonight.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<div class="section-title">
-
-<h3>
-KPI Alarm Center
-</h3>
-
-<span>
-Critical Monitoring
-</span>
-
-</div>
-
-<div class="alarm-list">
-
-<div class="alarm-item green-alarm">
-
-🟢 Pickling Stable
-
-</div>
-
-<div class="alarm-item yellow-alarm">
-
-🟡 Rolling Temperature Warning
-
-</div>
-
-<div class="alarm-item red-alarm">
-
-🔴 Shipment Delay Risk
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- TABLE -->
-
-<section class="card">
-
-<div class="section-title">
-
-<h3>
-Cumulative Production Report
-</h3>
-
-<span>
-Historical Factory Data
-</span>
-
-</div>
-
-<div class="table-wrapper">
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>Date</th>
-<th>Input</th>
-<th>Pickling</th>
-<th>Rolling</th>
-<th>Galvanized</th>
-<th>Sold</th>
-
-</tr>
-
-</thead>
-
-<tbody id="historyTable">
-
-</tbody>
-
-</table>
-
-</div>
-
-</section>
-
-</main>
-
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-box">A</div>
+            <div>
+                <h1>AKA Factory</h1>
+                <p>Executive MIS</p>
+            </div>
+        </div>
+
+        <nav>
+            <a href="#" class="nav-item active" data-page="dashboard">
+                📊 Dashboard
+            </a>
+            <a href="#" class="nav-item" data-page="production">
+                ⚙️ Production
+            </a>
+            <a href="#" class="nav-item" data-page="yield">
+                📈 Yield
+            </a>
+            <a href="#" class="nav-item" data-page="sales">
+                💰 Sales
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="status-dot"></div>
+            Factory Online
+        </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <div>
+                <h2 id="dashboardTitle">Executive Factory MIS</h2>
+                <p id="reportDate">Loading...</p>
+            </div>
+            <div class="top-actions">
+                <button id="themeToggle">🌙 Theme</button>
+                <button id="langToggle">🇨🇳 中文</button>
+                <button onclick="window.print()">📄 Export PDF</button>
+                <button onclick="location.reload()">🔄 Refresh</button>
+            </div>
+        </div>
+
+        <!-- ====================== DASHBOARD ====================== -->
+        <div id="dashboard" class="page">
+            <!-- KPI Grid -->
+            <section class="kpi-grid">
+                <div class="card kpi-card">
+                    <p>Input Coils</p>
+                    <h3 id="inputCoils">0</h3>
+                    <span>Daily Material Input</span>
+                </div>
+                <div class="card kpi-card">
+                    <p>Galvanized</p>
+                    <h3 id="galvanized">0</h3>
+                    <span>Finished Production</span>
+                </div>
+                <div class="card kpi-card">
+                    <p>Total Sales</p>
+                    <h3 id="totalSales">0</h3>
+                    <span>Daily Revenue</span>
+                </div>
+                <div class="card kpi-card">
+                    <p>Shipment</p>
+                    <h3 id="shipmentStatus">NORMAL</h3>
+                    <span>Logistics Status</span>
+                </div>
+            </section>
+
+            <!-- Production Flow Chart -->
+            <section class="card">
+                <h3>Production Trend</h3>
+                <canvas id="productionChart" height="90"></canvas>
+            </section>
+        </div>
+
+        <!-- ====================== PRODUCTION PAGE ====================== -->
+        <div id="production" class="page hidden">
+            <h1>Production Overview</h1>
+            <div class="grid">
+                <div class="card">
+                    <h3>Daily Production</h3>
+                    <h2 id="dailyProd">18,450</h2>
+                    <p>Units Today</p>
+                </div>
+                <div class="card">
+                    <h3>Efficiency</h3>
+                    <h2 id="efficiency">94.2%</h2>
+                </div>
+                <div class="card">
+                    <h3>Active Lines</h3>
+                    <h2>9 / 10</h2>
+                </div>
+            </div>
+            <canvas id="prodDetailChart" height="110"></canvas>
+        </div>
+
+        <!-- ====================== YIELD PAGE ====================== -->
+        <div id="yield" class="page hidden">
+            <h1>Yield Performance</h1>
+            <div class="grid">
+                <div class="card">
+                    <h3>Overall Yield</h3>
+                    <h2 id="overallYield">94.8%</h2>
+                </div>
+                <div class="card">
+                    <h3>First Pass Yield</h3>
+                    <h2 id="fpy">91.5%</h2>
+                </div>
+            </div>
+            <canvas id="yieldChart" height="120"></canvas>
+        </div>
+
+        <!-- ====================== SALES PAGE ====================== -->
+        <div id="sales" class="page hidden">
+            <h1>Sales & Shipment</h1>
+            <div class="grid">
+                <div class="card">
+                    <h3>Monthly Sales</h3>
+                    <h2 id="monthlySales">$3.24M</h2>
+                </div>
+                <div class="card">
+                    <h3>Orders This Week</h3>
+                    <h2>168</h2>
+                </div>
+            </div>
+            <canvas id="salesChart" height="120"></canvas>
+        </div>
+
+    </main>
 </div>
 
 <script src="app.js"></script>
-
 </body>
-
 </html>
-
-
