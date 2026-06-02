@@ -6,7 +6,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>AKA Steel Intelligence Center</title>
+<title>AKA Coil Processing Report</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -17,100 +17,65 @@
 </head>
 
 <body>
-<div class="kpi-value" id="productionValue">
-2073
-</div>
-<div class="status-card">
-
-    <div class="status-label">
-        Local Time
-    </div>
-
-    <div class="status-value" id="liveClock">
-        00:00:00
-    </div>
-
-</div>
-<section class="system-health">
-
-    <div class="health-item online">
-        <span class="dot"></span>
-        Furnace Online
-    </div>
-
-    <div class="health-item online">
-        <span class="dot"></span>
-        Casting Active
-    </div>
-
-    <div class="health-item warning">
-        <span class="dot"></span>
-        Cooling Warning
-    </div>
-
-    <div class="health-item online">
-        <span class="dot"></span>
-        Energy Stable
-    </div>
-
-</section>
-
-<section class="flow-section">
-
-    <div class="section-title">
-        MATERIAL FLOW
-    </div>
-
-    <div class="flow-grid" id="flowGrid">
-
-    </div>
-
-</section>
-
-
-<section
-class="summary-grid"
-id="summaryGrid">
-
-</section>
-
 
 <div class="dashboard">
+
+    <!-- SIDEBAR -->
 
     <aside class="sidebar">
 
         <div>
 
             <div class="logo">
+
                 <h1>AKA</h1>
-                <span>STEEL INTELLIGENCE</span>
+
+                <span>
+                    COIL PROCESSING
+                </span>
+
             </div>
 
             <div class="nav">
 
                 <div class="nav-item active">
+
                     <div class="nav-icon">⌂</div>
+
                     <div>Overview</div>
+
                 </div>
 
                 <div class="nav-item">
-                    <div class="nav-icon">⚙</div>
-                    <div>Production</div>
-                </div>
 
-                <div class="nav-item">
                     <div class="nav-icon">◉</div>
-                    <div>Equipment</div>
+
+                    <div>Production</div>
+
                 </div>
 
                 <div class="nav-item">
+
                     <div class="nav-icon">☰</div>
-                    <div>Inventory</div>
+
+                    <div>Warehouse</div>
+
                 </div>
 
                 <div class="nav-item">
-                    <div class="nav-icon">⚠</div>
-                    <div>Alerts</div>
+
+                    <div class="nav-icon">◌</div>
+
+                    <div>Sales</div>
+
+                </div>
+
+                <div class="nav-item">
+
+                    <div class="nav-icon">⚑</div>
+
+                    <div>Planning</div>
+
                 </div>
 
             </div>
@@ -118,228 +83,164 @@ id="summaryGrid">
         </div>
 
         <div class="user-card">
-            <strong>Administrator</strong>
+
+            <strong>
+                AKA Reporting System
+            </strong>
+
             <br><br>
-            <small>AKA Industrial Platform</small>
+
+            <small>
+                Contract Manufacturing Dashboard
+            </small>
+
         </div>
 
-   </aside>
+    </aside>
+
+    <!-- MAIN -->
 
     <main class="main">
+
+        <!-- TOPBAR -->
 
         <div class="topbar">
 
             <div class="title">
-                <h2>AKA Steel Intelligence Center</h2>
-                <p>Industrial Executive Monitoring Platform</p>
+
+                <h2>
+                    AKA Coil Processing Report
+                </h2>
+
+                <p>
+                    Contract Manufacturing Progress Dashboard
+                </p>
+
             </div>
 
-        
-
         </div>
 
-<section class="balance-grid">
+        <!-- EXECUTIVE SUMMARY -->
 
-    <div class="balance-tile">
+        <section
+        class="summary-grid"
+        id="summaryGrid">
 
-        <div class="tile-label">
-            FACTORY INPUT
-        </div>
+        </section>
 
-        <div class="tile-value">
-            2073.75 T
-        </div>
+        <!-- MATERIAL FLOW -->
 
-    </div>
+        <section class="flow-section">
 
-    <div class="balance-tile">
+            <div class="section-title">
 
-        <div class="tile-label">
-            FINAL PRODUCT
-        </div>
+                MATERIAL FLOW
 
-        <div class="tile-value">
-            1009.18 T
-        </div>
+            </div>
 
-    </div>
+            <div
+            class="flow-grid"
+            id="flowGrid">
 
-    <div class="balance-tile">
+            </div>
 
-        <div class="tile-label">
-            WAREHOUSE + WIP
-        </div>
+        </section>
 
-        <div class="tile-value">
-            1035.38 T
-        </div>
+        <!-- MATERIAL BALANCE -->
 
-    </div>
+        <section class="balance-grid">
 
-    <div class="balance-tile">
+            <div class="balance-tile">
 
-        <div class="tile-label">
-            WIP - SOLD
-        </div>
+                <div class="tile-label">
+                    FACTORY INPUT
+                </div>
 
-        <div class="tile-value">
-            784.12 T
-        </div>
+                <div class="tile-value">
+                    2073.75 T
+                </div>
 
-    </div>
+            </div>
 
-    <div class="balance-tile ready">
+            <div class="balance-tile">
 
-        <div class="tile-label">
-            READY TO SHIP
-        </div>
+                <div class="tile-label">
+                    FINAL PRODUCT
+                </div>
 
-        <div class="tile-value">
-            757.91 T
-        </div>
+                <div class="tile-value">
+                    1009.18 T
+                </div>
 
-    </div>
+            </div>
 
-    <div class="balance-tile scrap">
+            <div class="balance-tile">
 
-        <div class="tile-label">
-            TOTAL SCRAP
-        </div>
+                <div class="tile-label">
+                    WAREHOUSE + WIP
+                </div>
 
-        <div class="tile-value">
-            56.13 T
-        </div>
+                <div class="tile-value">
+                    1035.38 T
+                </div>
 
-    </div>
+            </div>
 
-</section>
+            <div class="balance-tile">
 
-<section class="line-overview">
+                <div class="tile-label">
+                    WIP - SOLD
+                </div>
 
-    <!-- PICKLING -->
+                <div class="tile-value">
+                    784.12 T
+                </div>
 
-    <div class="line-card">
+            </div>
 
-        <div class="line-header">
-            PICKLING LINE
-        </div>
+            <div class="balance-tile ready">
 
-        <div class="line-metric">
-            <span>Production</span>
-            <strong>1,240 T</strong>
-        </div>
+                <div class="tile-label">
+                    READY TO SHIP
+                </div>
 
-        <div class="line-metric">
-            <span>In Production</span>
-            <strong>320 T</strong>
-        </div>
+                <div class="tile-value">
+                    757.91 T
+                </div>
 
-        <div class="line-metric">
-            <span>Yield</span>
-            <strong class="yield-good">97.2%</strong>
-        </div>
+            </div>
 
-    </div>
+            <div class="balance-tile scrap">
 
-    <!-- COLD ROLLING -->
+                <div class="tile-label">
+                    TOTAL SCRAP
+                </div>
 
-    <div class="line-card">
+                <div class="tile-value">
+                    56.13 T
+                </div>
 
-        <div class="line-header">
-            COLD ROLLING MILL
-        </div>
+            </div>
 
-        <div class="line-metric">
-            <span>Production</span>
-            <strong>980 T</strong>
-        </div>
+        </section>
 
-        <div class="line-metric">
-            <span>In Production</span>
-            <strong>210 T</strong>
-        </div>
+        <!-- CHART -->
 
-        <div class="line-metric">
-            <span>Yield</span>
-            <strong class="yield-good">96.4%</strong>
-        </div>
-
-    </div>
-
-    <!-- GALVANIZING -->
-
-    <div class="line-card">
-
-        <div class="line-header">
-            GALVANIZING LINE
-        </div>
-
-        <div class="line-metric">
-            <span>Production</span>
-            <strong>760 T</strong>
-        </div>
-
-        <div class="line-metric">
-            <span>In Production</span>
-            <strong>180 T</strong>
-        </div>
-
-        <div class="line-metric">
-            <span>Yield</span>
-            <strong class="yield-warning">95.8%</strong>
-        </div>
-
-    </div>
-
-</section>
         <section class="content-grid">
 
-            <div>
+            <div class="card">
 
-                <div class="card">
+                <div class="card-title">
 
-                    <div class="card-title">
-                        <h3>Production Trend</h3>
-                        <span>24 Hours</span>
-                    </div>
-
-                    <div id="lineChart" class="chart"></div>
+                    <h3>
+                        Cumulative Production Trend
+                    </h3>
 
                 </div>
 
-            </div>
-
-            <div>
-
-                <div class="card">
-
-                    <div class="card-title">
-                        <h3>Product Mix</h3>
-                    </div>
-
-                    <div id="pieChart" class="chart"></div>
-
-                </div>
-
-            </div>
-
-            <div>
-
-                <div class="card">
-
-                    <div class="card-title">
-                        <h3>Realtime Alerts</h3>
-                    </div>
-
-                    <div class="alert red-alert">
-                        <h4>Furnace Temperature Alert</h4>
-                        <p>Temperature exceeded threshold.</p>
-                    </div>
-
-                    <div class="alert orange-alert">
-                        <h4>Cooling Pressure Warning</h4>
-                        <p>Pressure dropped below normal level.</p>
-                    </div>
+                <div
+                id="lineChart"
+                class="chart">
 
                 </div>
 
@@ -354,4 +255,5 @@ id="summaryGrid">
 <script src="app.js"></script>
 
 </body>
+
 </html>
