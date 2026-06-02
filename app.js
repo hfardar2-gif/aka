@@ -1,92 +1,64 @@
-let darkMode = true;
-
-document.getElementById('themeToggle').addEventListener('click', () => {
-    darkMode = !darkMode;
-    if (darkMode) {
-        document.body.classList.remove('light-mode');
-    } else {
-        document.body.classList.add('light-mode');
-    }
-});
-
-let chinese = false;
-document.getElementById('langToggle').addEventListener('click', () => {
-    chinese = !chinese;
-    const title = document.getElementById('dashboardTitle');
-    if (chinese) {
-        title.innerText = '智能工厂控制中心';
-    } else {
-        title.innerText = 'Executive Factory MIS';
-    }
-});
-
-// ====================== NAVIGATION ======================
+// Navigation
 function initNavigation() {
-    const navItems = document.querySelectorAll('.nav-item');
-    const pages = document.querySelectorAll('.page');
-
-    navItems.forEach(item => {
+    document.querySelectorAll('.nav-item').forEach(item => {
         item.addEventListener('click', (e) => {
             e.preventDefault();
-
-            navItems.forEach(i => i.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             item.classList.add('active');
 
-            const pageId = item.getAttribute('data-page');
-
-            pages.forEach(page => page.classList.add('hidden'));
-            document.getElementById(pageId).classList.remove('hidden');
+            document.querySelectorAll('.page').forEach(page => page.classList.add('hidden'));
+            document.getElementById(item.getAttribute('data-page')).classList.remove('hidden');
         });
     });
 }
 
-// ====================== ANIMATION ======================
-function animateValue(id, end) {
-    let start = 0;
-    const duration = 1000;
-    const step = end / (duration / 16);
-    const obj = document.getElementById(id);
+// Charts
+function createProductionChart() {
+    new Chart(document.getElementById('productionChart'), {
+        type: 'bar',
+        data: {
+            labels: ['اسیدشویی', 'نورد', 'گالوانیزه'],
+            datasets: [{
+                label: 'تناژ',
+                data: [2025.87, 1872.57, 1035.39],
+                backgroundColor: ['#22d3ee', '#a855f7', '#eab308']
+            }]
+        },
+        options: { responsive: true, plugins: { legend: { display: false }}}
+    });
+}
 
-    const counter = setInterval(() => {
-        start += step;
-        if (start >= end) {
-            start = end;
-            clearInterval(counter);
+function createYieldChart() {
+    new Chart(document.getElementById('yieldChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['اسیدشویی', 'نورد', 'گالوانیزه', 'کلاف به کلاف'],
+            datasets: [{
+                data: [100, 53.69, 97.47, 96.57],
+                backgroundColor: ['#22c55e', '#eab308', '#06b6d4', '#8b5cf6']
+            }]
+        },
+        options: { responsive: true }
+    });
+}
+
+function createSalesChart() {
+    new Chart(document.getElementById('salesChart'), {
+        type: 'pie',
+        data: {
+            labels: ['آماده ارسال', 'فروخته شده', 'WIP'],
+            datasets: [{
+                data: [757.92, 251.26, 1035.39],
+                backgroundColor: ['#22d3ee', '#f59e0b', '#64748b']
+            }]
         }
-        obj.innerText = Math.floor(start).toLocaleString();
-    }, 16);
+    });
 }
 
-// ====================== LOAD DATA ======================
-fetch('data.json')
-    .then(res => res.json())
-    .then(data => {
-        document.getElementById('reportDate').innerText = data.date;
-
-        animateValue('inputCoils', data.inputCoils);
-        animateValue('galvanized', data.galvanized);
-        animateValue('totalSales', data.totalSales);
-
-        document.getElementById('shipmentStatus').innerText = data.shipmentStatus;
-
-        // Production Chart
-        new Chart(document.getElementById('productionChart'), {
-            type: 'line',
-            data: {
-                labels: data.history.map(x => x.date),
-                datasets: [{
-                    label: 'Production',
-                    data: data.history.map(x => x.galvanized),
-                    borderColor: '#22d3ee',
-                    tension: 0.4
-                }]
-            },
-            options: { responsive: true, plugins: { legend: { display: false } } }
-        });
-    });
-
-// Initialize everything
+// Initialize
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
-    // Default page is dashboard
+    createProductionChart();
+    createYieldChart();
+    createSalesChart();
 });

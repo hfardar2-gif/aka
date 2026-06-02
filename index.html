@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="ltr">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -12,7 +12,6 @@
 
 <div class="layout">
 
-    <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="brand">
             <div class="brand-box">A</div>
@@ -23,127 +22,110 @@
         </div>
 
         <nav>
-            <a href="#" class="nav-item active" data-page="dashboard">
-                📊 Dashboard
-            </a>
-            <a href="#" class="nav-item" data-page="production">
-                ⚙️ Production
-            </a>
-            <a href="#" class="nav-item" data-page="yield">
-                📈 Yield
-            </a>
-            <a href="#" class="nav-item" data-page="sales">
-                💰 Sales
-            </a>
+            <a href="#" class="nav-item active" data-page="dashboard">📊 داشبورد</a>
+            <a href="#" class="nav-item" data-page="production">⚙️ تولید</a>
+            <a href="#" class="nav-item" data-page="yield">📈 بازده</a>
+            <a href="#" class="nav-item" data-page="sales">💰 فروش و ارسال</a>
         </nav>
-
-        <div class="sidebar-footer">
-            <div class="status-dot"></div>
-            Factory Online
-        </div>
     </aside>
 
-    <!-- MAIN -->
     <main class="main">
 
-        <!-- TOPBAR -->
         <div class="topbar">
             <div>
-                <h2 id="dashboardTitle">Executive Factory MIS</h2>
-                <p id="reportDate">Loading...</p>
-            </div>
-            <div class="top-actions">
-                <button id="themeToggle">🌙 Theme</button>
-                <button id="langToggle">🇨🇳 中文</button>
-                <button onclick="window.print()">📄 Export PDF</button>
-                <button onclick="location.reload()">🔄 Refresh</button>
+                <h2>گزارش روزانه کارخانه</h2>
+                <p id="reportDate">02 June 2026</p>
             </div>
         </div>
 
-        <!-- ====================== DASHBOARD ====================== -->
+        <!-- DASHBOARD -->
         <div id="dashboard" class="page">
-            <!-- KPI Grid -->
             <section class="kpi-grid">
                 <div class="card kpi-card">
-                    <p>Input Coils</p>
-                    <h3 id="inputCoils">0</h3>
-                    <span>Daily Material Input</span>
+                    <p>ورودی کلاف (تن)</p>
+                    <h3 id="inputCoils">2073.75</h3>
                 </div>
                 <div class="card kpi-card">
-                    <p>Galvanized</p>
-                    <h3 id="galvanized">0</h3>
-                    <span>Finished Production</span>
+                    <p>تولید گالوانیزه (تن)</p>
+                    <h3 id="galvanized">1035.39</h3>
                 </div>
                 <div class="card kpi-card">
-                    <p>Total Sales</p>
-                    <h3 id="totalSales">0</h3>
-                    <span>Daily Revenue</span>
+                    <p>فروخته شده (تن)</p>
+                    <h3 id="sold">251.26</h3>
                 </div>
                 <div class="card kpi-card">
-                    <p>Shipment</p>
-                    <h3 id="shipmentStatus">NORMAL</h3>
-                    <span>Logistics Status</span>
+                    <p>آماده ارسال</p>
+                    <h3 id="readyToShip">757.92</h3>
                 </div>
-            </section>
-
-            <!-- Production Flow Chart -->
-            <section class="card">
-                <h3>Production Trend</h3>
-                <canvas id="productionChart" height="90"></canvas>
             </section>
         </div>
 
-        <!-- ====================== PRODUCTION PAGE ====================== -->
+        <!-- PRODUCTION PAGE -->
         <div id="production" class="page hidden">
-            <h1>Production Overview</h1>
+            <h1>وضعیت تولید</h1>
             <div class="grid">
                 <div class="card">
-                    <h3>Daily Production</h3>
-                    <h2 id="dailyProd">18,450</h2>
-                    <p>Units Today</p>
+                    <h3>ورودی کارخانه</h3>
+                    <h2>2073.75 تن</h2>
                 </div>
                 <div class="card">
-                    <h3>Efficiency</h3>
-                    <h2 id="efficiency">94.2%</h2>
+                    <h3>اسیدشویی</h3>
+                    <h2>2025.87 تن</h2>
                 </div>
                 <div class="card">
-                    <h3>Active Lines</h3>
-                    <h2>9 / 10</h2>
+                    <h3>نورد</h3>
+                    <h2>1872.57 تن</h2>
+                </div>
+                <div class="card">
+                    <h3>گالوانیزه</h3>
+                    <h2>1035.39 تن</h2>
                 </div>
             </div>
-            <canvas id="prodDetailChart" height="110"></canvas>
+            <canvas id="productionChart" height="110"></canvas>
         </div>
 
-        <!-- ====================== YIELD PAGE ====================== -->
+        <!-- YIELD PAGE -->
         <div id="yield" class="page hidden">
-            <h1>Yield Performance</h1>
+            <h1>بازده (Yield)</h1>
             <div class="grid">
                 <div class="card">
-                    <h3>Overall Yield</h3>
-                    <h2 id="overallYield">94.8%</h2>
+                    <h3>بازده اسیدشویی</h3>
+                    <h2>100%</h2>
                 </div>
                 <div class="card">
-                    <h3>First Pass Yield</h3>
-                    <h2 id="fpy">91.5%</h2>
+                    <h3>بازده نورد</h3>
+                    <h2>53.69%</h2>
+                </div>
+                <div class="card">
+                    <h3>بازده گالوانیزه</h3>
+                    <h2>97.47%</h2>
+                </div>
+                <div class="card">
+                    <h3>بازده کلی کلاف به کلاف</h3>
+                    <h2>96.57%</h2>
                 </div>
             </div>
-            <canvas id="yieldChart" height="120"></canvas>
+            <canvas id="yieldChart" height="130"></canvas>
         </div>
 
-        <!-- ====================== SALES PAGE ====================== -->
+        <!-- SALES PAGE -->
         <div id="sales" class="page hidden">
-            <h1>Sales & Shipment</h1>
+            <h1>فروش و ارسال</h1>
             <div class="grid">
                 <div class="card">
-                    <h3>Monthly Sales</h3>
-                    <h2 id="monthlySales">$3.24M</h2>
+                    <h3>آماده ارسال</h3>
+                    <h2>757.92 تن</h2>
                 </div>
                 <div class="card">
-                    <h3>Orders This Week</h3>
-                    <h2>168</h2>
+                    <h3>فروخته شده تا امروز</h3>
+                    <h2>251.26 تن</h2>
+                </div>
+                <div class="card">
+                    <h3>موجودی انبار + WIP</h3>
+                    <h2>1035.39 تن</h2>
                 </div>
             </div>
-            <canvas id="salesChart" height="120"></canvas>
+            <canvas id="salesChart" height="130"></canvas>
         </div>
 
     </main>
