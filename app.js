@@ -30,6 +30,79 @@ async function loadDashboard(){
 
 function renderExecutiveSummary(data){
 
+function renderMaterialFlow(data){
+
+    const flowGrid =
+    document.getElementById('flowGrid');
+
+    const factoryInput =
+    data.inputCoilsTon;
+
+    const items = [
+
+        {
+            label:'INPUT',
+            value:data.inputCoilsTon
+        },
+
+        {
+            label:'PICKLING',
+            value:data.picklingTon
+        },
+
+        {
+            label:'ROLLING',
+            value:data.rollingTon
+        },
+
+        {
+            label:'GALVANIZING',
+            value:data.galvanizedTon
+        },
+
+        {
+            label:'SOLD',
+            value:data.soldTon
+        }
+
+    ];
+
+    flowGrid.innerHTML =
+    items.map(item => {
+
+        const percent =
+        (item.value / factoryInput) * 100;
+
+        return `
+
+        <div class="flow-card">
+
+            <div class="flow-label">
+                ${item.label}
+            </div>
+
+            <div class="flow-value">
+                ${item.value.toFixed(1)} T
+            </div>
+
+            <div class="flow-progress">
+
+                <div
+                class="flow-progress-bar"
+                style="
+                width:${percent}%">
+                </div>
+
+            </div>
+
+        </div>
+
+        `;
+
+    }).join('');
+
+}
+
     const summaryGrid =
     document.getElementById('summaryGrid');
 
@@ -106,4 +179,10 @@ function renderExecutiveSummary(data){
 }
 
 loadDashboard();
+
+renderMaterialFlow(
+    data.totalProductionTill
+);
+
+
 

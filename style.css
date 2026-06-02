@@ -541,3 +541,125 @@ body{
     margin-left:6px;
 
 }
+
+/* MATERIAL FLOW */
+
+.flow-section{
+
+    margin-bottom:34px;
+
+}
+
+.section-title{
+
+    color:white;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    margin-bottom:24px;
+
+    letter-spacing:1px;
+
+}
+
+.flow-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(5,1fr);
+
+    gap:18px;
+
+}
+
+.flow-card{
+
+    background:#0F1722;
+
+    border-radius:22px;
+
+    padding:28px;
+
+    position:relative;
+
+    border:1px solid rgba(255,255,255,.05);
+
+    overflow:hidden;
+
+}
+
+.flow-card::after{
+
+    content:'→';
+
+    position:absolute;
+
+    right:-14px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    font-size:34px;
+
+    color:#3BA4FF;
+
+    opacity:.4;
+
+}
+
+.flow-card:last-child::after{
+
+    display:none;
+
+}
+
+.flow-label{
+
+    color:#8EA4C1;
+
+    font-size:13px;
+
+    margin-bottom:16px;
+
+    letter-spacing:1px;
+
+}
+
+.flow-value{
+
+    color:white;
+
+    font-size:34px;
+
+    font-weight:800;
+
+    margin-bottom:18px;
+
+}
+
+.flow-progress{
+
+    height:8px;
+
+    background:#1C2735;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+.flow-progress-bar{
+
+    height:100%;
+
+    border-radius:20px;
+
+    background:#3BA4FF;
+
+}
+
