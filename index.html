@@ -1,4 +1,4 @@
-
+```html id="ultimate1"
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,11 +8,13 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Executive Factory MIS</title>
+<title>Smart Factory Command Center</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -38,6 +40,24 @@ min-height: 100vh;
 
 color: white;
 
+transition: all 0.4s ease;
+
+overflow-x: hidden;
+
+}
+
+.light-mode {
+
+background:
+linear-gradient(
+135deg,
+#f8fafc,
+#e2e8f0,
+#cbd5e1
+);
+
+color: #0f172a;
+
 }
 
 .glass {
@@ -53,6 +73,14 @@ box-shadow:
 
 }
 
+.light-mode .glass {
+
+background: rgba(255,255,255,0.75);
+
+color: #111827;
+
+}
+
 .kpi-card {
 
 transition: all 0.3s ease;
@@ -61,10 +89,7 @@ transition: all 0.3s ease;
 
 .kpi-card:hover {
 
-transform: translateY(-4px);
-
-box-shadow:
-0 10px 30px rgba(0,0,0,0.4);
+transform: translateY(-5px);
 
 }
 
@@ -78,7 +103,7 @@ box-shadow:
 .glow-yellow {
 
 box-shadow:
-0 0 25px rgba(250,204,21,0.4);
+0 0 25px rgba(250,204,21,0.5);
 
 }
 
@@ -86,18 +111,6 @@ box-shadow:
 
 box-shadow:
 0 0 25px rgba(239,68,68,0.5);
-
-}
-
-.table-dark th {
-
-background: rgba(255,255,255,0.08);
-
-}
-
-.table-dark td {
-
-background: rgba(255,255,255,0.03);
 
 }
 
@@ -119,7 +132,7 @@ opacity: 1;
 
 50% {
 
-transform: scale(1.25);
+transform: scale(1.3);
 
 opacity: 0.7;
 
@@ -161,6 +174,48 @@ transform: translateY(0);
 
 }
 
+.table-dark th {
+
+background: rgba(255,255,255,0.08);
+
+}
+
+.table-dark td {
+
+background: rgba(255,255,255,0.03);
+
+}
+
+.line-running {
+
+background: rgba(34,197,94,0.2);
+
+border: 1px solid rgba(34,197,94,0.4);
+
+}
+
+.line-warning {
+
+background: rgba(250,204,21,0.2);
+
+border: 1px solid rgba(250,204,21,0.4);
+
+}
+
+.line-stop {
+
+background: rgba(239,68,68,0.2);
+
+border: 1px solid rgba(239,68,68,0.4);
+
+}
+
+.counter {
+
+font-variant-numeric: tabular-nums;
+
+}
+
 </style>
 
 </head>
@@ -173,17 +228,19 @@ transform: translateY(0);
 
 <div class="glass rounded-3xl p-8 mb-6 fade-in">
 
-<div class="flex flex-col md:flex-row justify-between items-center">
+<div class="flex flex-col lg:flex-row justify-between items-center gap-4">
 
 <div>
 
-<h1 class="text-4xl font-extrabold tracking-wide">
+<h1 id="titleMain"
+class="text-4xl font-extrabold tracking-wide">
 
-EXECUTIVE FACTORY MIS
+SMART FACTORY COMMAND CENTER
 
 </h1>
 
-<p class="text-slate-300 mt-2 text-lg">
+<p id="subTitle"
+class="text-slate-300 mt-2 text-lg">
 
 Production • Yield • Sales • Shipment • Analytics
 
@@ -191,7 +248,47 @@ Production • Yield • Sales • Shipment • Analytics
 
 </div>
 
-<div class="mt-5 md:mt-0 text-right">
+<div class="flex flex-wrap gap-3">
+
+<button
+id="themeBtn"
+class="bg-white/10 hover:bg-white/20 px-5 py-2 rounded-xl font-bold transition">
+
+🌙 Dark
+
+</button>
+
+<button
+onclick="location.reload()"
+class="bg-cyan-500 hover:bg-cyan-400 px-5 py-2 rounded-xl font-bold transition">
+
+🔄 Refresh
+
+</button>
+
+<button
+onclick="exportPDF()"
+class="bg-emerald-500 hover:bg-emerald-400 px-5 py-2 rounded-xl font-bold transition">
+
+📄 Export PDF
+
+</button>
+
+<button
+id="langBtn"
+class="bg-orange-500 hover:bg-orange-400 px-5 py-2 rounded-xl font-bold transition">
+
+🇨🇳 中文
+
+</button>
+
+</div>
+
+</div>
+
+<div class="mt-6 flex justify-between items-center">
+
+<div>
 
 <div class="text-slate-400">
 Report Date
@@ -203,11 +300,23 @@ class="text-2xl font-bold mt-1">
 
 </div>
 
+<div class="text-right">
+
+<div class="text-slate-400">
+Factory Status
+</div>
+
+<div class="text-green-400 font-bold text-xl mt-1">
+🟢 RUNNING
 </div>
 
 </div>
 
-<!-- TOP KPI -->
+</div>
+
+</div>
+
+<!-- KPI -->
 
 <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
 
@@ -218,7 +327,8 @@ Input Coils
 </div>
 
 <div id="inputCoils"
-class="text-4xl font-extrabold mt-3">
+class="counter text-5xl font-extrabold mt-3">
+0
 </div>
 
 <div class="text-green-400 mt-2 text-sm">
@@ -234,7 +344,8 @@ Galvanized
 </div>
 
 <div id="galvanized"
-class="text-4xl font-extrabold mt-3">
+class="counter text-5xl font-extrabold mt-3">
+0
 </div>
 
 <div class="text-cyan-400 mt-2 text-sm">
@@ -250,7 +361,8 @@ Total Sales
 </div>
 
 <div id="totalSales"
-class="text-4xl font-extrabold mt-3">
+class="counter text-5xl font-extrabold mt-3">
+0
 </div>
 
 <div class="text-emerald-400 mt-2 text-sm">
@@ -267,6 +379,7 @@ Shipment
 
 <div id="shipmentStatus"
 class="text-4xl font-extrabold mt-3">
+NORMAL
 </div>
 
 <div class="text-orange-400 mt-2 text-sm">
@@ -277,6 +390,94 @@ Logistics Status
 
 </div>
 
+<!-- REALTIME LINE STATUS -->
+
+<div class="glass rounded-3xl p-6 mb-6">
+
+<div class="flex justify-between items-center mb-6">
+
+<h2 class="text-2xl font-bold">
+Realtime Line Status
+</h2>
+
+<div class="text-slate-400">
+Live Monitoring
+</div>
+
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+
+<div class="line-running rounded-2xl p-5">
+
+<div class="flex justify-between items-center">
+
+<div class="font-bold text-xl">
+Pickling Line
+</div>
+
+<div class="status-light w-4 h-4 rounded-full bg-green-500"></div>
+
+</div>
+
+<div class="mt-4 text-3xl font-bold">
+RUNNING
+</div>
+
+<div class="mt-2 text-slate-300">
+Speed: 120 m/min
+</div>
+
+</div>
+
+<div class="line-warning rounded-2xl p-5">
+
+<div class="flex justify-between items-center">
+
+<div class="font-bold text-xl">
+Rolling Mill
+</div>
+
+<div class="status-light w-4 h-4 rounded-full bg-yellow-400"></div>
+
+</div>
+
+<div class="mt-4 text-3xl font-bold">
+WARNING
+</div>
+
+<div class="mt-2 text-slate-300">
+Temperature High
+</div>
+
+</div>
+
+<div class="line-running rounded-2xl p-5">
+
+<div class="flex justify-between items-center">
+
+<div class="font-bold text-xl">
+Galvanizing
+</div>
+
+<div class="status-light w-4 h-4 rounded-full bg-green-500"></div>
+
+</div>
+
+<div class="mt-4 text-3xl font-bold">
+RUNNING
+</div>
+
+<div class="mt-2 text-slate-300">
+Zinc Stable
+</div>
+
+</div>
+
+</div>
+
+</div>
+```html id="ultimate2"
 <!-- YIELD -->
 
 <div class="glass rounded-3xl p-6 mb-6 fade-in">
@@ -284,7 +485,7 @@ Logistics Status
 <div class="flex justify-between items-center mb-6">
 
 <h2 class="text-2xl font-bold">
-YIELD CONTROL CENTER
+Yield Control Center
 </h2>
 
 <div class="text-slate-400">
@@ -296,16 +497,16 @@ Realtime KPI Monitoring
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
 
 <div id="picklingCard"
-class="rounded-2xl p-5 kpi-card">
+class="glass rounded-2xl p-5">
 
-<div class="flex justify-between items-center">
+<div class="flex justify-between">
 
-<div class="text-slate-300">
+<div>
 Pickling
 </div>
 
 <div id="picklingLight"
-class="w-4 h-4 rounded-full status-light">
+class="status-light w-4 h-4 rounded-full">
 </div>
 
 </div>
@@ -321,16 +522,16 @@ class="mt-4 font-bold">
 </div>
 
 <div id="rollingCard"
-class="rounded-2xl p-5 kpi-card">
+class="glass rounded-2xl p-5">
 
-<div class="flex justify-between items-center">
+<div class="flex justify-between">
 
-<div class="text-slate-300">
+<div>
 Rolling
 </div>
 
 <div id="rollingLight"
-class="w-4 h-4 rounded-full status-light">
+class="status-light w-4 h-4 rounded-full">
 </div>
 
 </div>
@@ -346,16 +547,16 @@ class="mt-4 font-bold">
 </div>
 
 <div id="galvanizingCard"
-class="rounded-2xl p-5 kpi-card">
+class="glass rounded-2xl p-5">
 
-<div class="flex justify-between items-center">
+<div class="flex justify-between">
 
-<div class="text-slate-300">
+<div>
 Galvanizing
 </div>
 
 <div id="galvanizingLight"
-class="w-4 h-4 rounded-full status-light">
+class="status-light w-4 h-4 rounded-full">
 </div>
 
 </div>
@@ -371,16 +572,16 @@ class="mt-4 font-bold">
 </div>
 
 <div id="coilCard"
-class="rounded-2xl p-5 kpi-card">
+class="glass rounded-2xl p-5">
 
-<div class="flex justify-between items-center">
+<div class="flex justify-between">
 
-<div class="text-slate-300">
+<div>
 Coil Yield
 </div>
 
 <div id="coilLight"
-class="w-4 h-4 rounded-full status-light">
+class="status-light w-4 h-4 rounded-full">
 </div>
 
 </div>
@@ -405,17 +606,9 @@ class="mt-4 font-bold">
 
 <div class="glass rounded-3xl p-6">
 
-<div class="flex justify-between items-center mb-6">
-
-<h2 class="text-2xl font-bold">
+<h2 class="text-2xl font-bold mb-6">
 Production Trend
 </h2>
-
-<div class="text-cyan-400">
-Live Analytics
-</div>
-
-</div>
 
 <canvas id="productionChart"></canvas>
 
@@ -423,17 +616,9 @@ Live Analytics
 
 <div class="glass rounded-3xl p-6">
 
-<div class="flex justify-between items-center mb-6">
-
-<h2 class="text-2xl font-bold">
+<h2 class="text-2xl font-bold mb-6">
 Yield Performance
 </h2>
-
-<div class="text-yellow-400">
-Efficiency Analysis
-</div>
-
-</div>
 
 <canvas id="yieldChart"></canvas>
 
@@ -441,132 +626,14 @@ Efficiency Analysis
 
 </div>
 
-<!-- TABLES -->
-
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-
-<!-- SALES -->
+<!-- TABLE -->
 
 <div class="glass rounded-3xl p-6">
 
 <h2 class="text-2xl font-bold mb-6">
-Sales Report
-</h2>
-
-<div class="overflow-x-auto">
-
-<table class="w-full table-dark rounded-xl overflow-hidden">
-
-<thead>
-
-<tr>
-
-<th class="p-4 text-left">
-Domestic
-</th>
-
-<th class="p-4 text-left">
-Export
-</th>
-
-<th class="p-4 text-left">
-Invoice
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td class="p-4" id="domesticSales"></td>
-
-<td class="p-4" id="exportSales"></td>
-
-<td class="p-4" id="readyInvoice"></td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-<!-- SHIPMENT -->
-
-<div class="glass rounded-3xl p-6">
-
-<h2 class="text-2xl font-bold mb-6">
-Shipment Status
-</h2>
-
-<div class="overflow-x-auto">
-
-<table class="w-full table-dark rounded-xl overflow-hidden">
-
-<thead>
-
-<tr>
-
-<th class="p-4 text-left">
-Ready
-</th>
-
-<th class="p-4 text-left">
-Dispatch
-</th>
-
-<th class="p-4 text-left">
-Pending
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td class="p-4" id="readyShip"></td>
-
-<td class="p-4" id="dispatched"></td>
-
-<td class="p-4" id="pendingTrucks"></td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- HISTORY -->
-
-<div class="glass rounded-3xl p-6 fade-in">
-
-<div class="flex justify-between items-center mb-6">
-
-<h2 class="text-2xl font-bold">
 Cumulative Production Report
 </h2>
 
-<div class="text-slate-400">
-Historical Production Data
-</div>
-
-</div>
-
 <div class="overflow-x-auto">
 
 <table class="w-full table-dark rounded-xl overflow-hidden">
@@ -575,29 +642,17 @@ Historical Production Data
 
 <tr>
 
-<th class="p-4 text-left">
-Date
-</th>
+<th class="p-4 text-left">Date</th>
 
-<th class="p-4 text-left">
-Input
-</th>
+<th class="p-4 text-left">Input</th>
 
-<th class="p-4 text-left">
-Pickling
-</th>
+<th class="p-4 text-left">Pickling</th>
 
-<th class="p-4 text-left">
-Rolling
-</th>
+<th class="p-4 text-left">Rolling</th>
 
-<th class="p-4 text-left">
-Galvanized
-</th>
+<th class="p-4 text-left">Galvanized</th>
 
-<th class="p-4 text-left">
-Sold
-</th>
+<th class="p-4 text-left">Sold</th>
 
 </tr>
 
@@ -617,6 +672,136 @@ Sold
 
 <script>
 
+// THEME
+
+let darkMode = true;
+
+document.getElementById('themeBtn')
+
+.addEventListener('click', () => {
+
+darkMode = !darkMode;
+
+if(darkMode){
+
+document.body.classList.remove('light-mode');
+
+document.getElementById('themeBtn').innerText =
+'🌙 Dark';
+
+}
+
+else{
+
+document.body.classList.add('light-mode');
+
+document.getElementById('themeBtn').innerText =
+'☀️ Light';
+
+}
+
+});
+
+// LANGUAGE
+
+let chinese = false;
+
+document.getElementById('langBtn')
+
+.addEventListener('click', () => {
+
+chinese = !chinese;
+
+if(chinese){
+
+document.getElementById('titleMain').innerText =
+'智能工厂控制中心';
+
+document.getElementById('subTitle').innerText =
+'生产 • 良率 • 销售 • 发货 • 分析';
+
+document.getElementById('langBtn').innerText =
+'🇺🇸 English';
+
+}
+
+else{
+
+document.getElementById('titleMain').innerText =
+'SMART FACTORY COMMAND CENTER';
+
+document.getElementById('subTitle').innerText =
+'Production • Yield • Sales • Shipment • Analytics';
+
+document.getElementById('langBtn').innerText =
+'🇨🇳 中文';
+
+}
+
+});
+
+// PDF EXPORT
+
+function exportPDF(){
+
+const { jsPDF } = window.jspdf;
+
+const doc = new jsPDF();
+
+doc.setFontSize(20);
+
+doc.text(
+'Factory Executive Report',
+20,
+20
+);
+
+doc.setFontSize(12);
+
+doc.text(
+'Generated from Smart Factory Dashboard',
+20,
+35
+);
+
+doc.save('factory-report.pdf');
+
+}
+
+// ANIMATED COUNTER
+
+function animateValue(id, start, end, duration){
+
+let range = end - start;
+
+let current = start;
+
+let increment = end > start ? 1 : -1;
+
+let stepTime =
+Math.abs(Math.floor(duration / range));
+
+const obj =
+document.getElementById(id);
+
+const timer = setInterval(function(){
+
+current += increment;
+
+obj.innerText = current;
+
+if(current == end){
+
+clearInterval(timer);
+
+}
+
+}, stepTime);
+
+}
+
+// DATA
+
 fetch('data.json')
 
 .then(response => response.json())
@@ -626,39 +811,33 @@ fetch('data.json')
 document.getElementById('reportDate').innerText =
 data.date;
 
-document.getElementById('inputCoils').innerText =
-data.inputCoils;
+animateValue(
+'inputCoils',
+0,
+Math.floor(data.inputCoils),
+1000
+);
 
-document.getElementById('galvanized').innerText =
-data.galvanized;
+animateValue(
+'galvanized',
+0,
+Math.floor(data.galvanized),
+1000
+);
 
-document.getElementById('totalSales').innerText =
-data.totalSales;
+animateValue(
+'totalSales',
+0,
+Math.floor(data.totalSales),
+1000
+);
 
 document.getElementById('shipmentStatus').innerText =
 data.shipmentStatus;
 
-document.getElementById('domesticSales').innerText =
-data.domesticSales;
+// KPI
 
-document.getElementById('exportSales').innerText =
-data.exportSales;
-
-document.getElementById('readyInvoice').innerText =
-data.readyInvoice;
-
-document.getElementById('readyShip').innerText =
-data.readyShip;
-
-document.getElementById('dispatched').innerText =
-data.dispatched;
-
-document.getElementById('pendingTrucks').innerText =
-data.pendingTrucks;
-
-// KPI SYSTEM
-
-function setupYield(name, value) {
+function setupYield(name, value){
 
 const num = parseFloat(value);
 
@@ -676,60 +855,33 @@ document.getElementById(name + 'Alarm');
 
 yieldEl.innerText = value;
 
-if (num >= 95) {
+if(num >= 95){
 
-card.className +=
-' glass glow-green';
+card.classList.add('glow-green');
 
-light.className +=
-' bg-green-500';
+light.classList.add('bg-green-500');
 
-yieldEl.className +=
-' text-green-400';
-
-alarm.innerText =
-'🟢 NORMAL';
-
-alarm.className +=
-' text-green-400';
+alarm.innerText = '🟢 NORMAL';
 
 }
 
-else if (num >= 85) {
+else if(num >= 85){
 
-card.className +=
-' glass glow-yellow';
+card.classList.add('glow-yellow');
 
-light.className +=
-' bg-yellow-400';
+light.classList.add('bg-yellow-400');
 
-yieldEl.className +=
-' text-yellow-300';
-
-alarm.innerText =
-'🟡 WARNING';
-
-alarm.className +=
-' text-yellow-300';
+alarm.innerText = '🟡 WARNING';
 
 }
 
-else {
+else{
 
-card.className +=
-' glass glow-red';
+card.classList.add('glow-red');
 
-light.className +=
-' bg-red-500';
+light.classList.add('bg-red-500');
 
-yieldEl.className +=
-' text-red-400';
-
-alarm.innerText =
-'🔴 CRITICAL';
-
-alarm.className +=
-' text-red-400';
+alarm.innerText = '🔴 CRITICAL';
 
 }
 
@@ -755,7 +907,7 @@ setupYield(
 data.coilYield
 );
 
-// HISTORY TABLE
+// TABLE
 
 const historyTable =
 document.getElementById('historyTable');
@@ -826,50 +978,6 @@ tension: 0.4
 
 ]
 
-},
-
-options: {
-
-responsive: true,
-
-plugins: {
-
-legend: {
-
-labels: {
-
-color: 'white'
-
-}
-
-}
-
-},
-
-scales: {
-
-x: {
-
-ticks: {
-
-color: 'white'
-
-}
-
-},
-
-y: {
-
-ticks: {
-
-color: 'white'
-
-}
-
-}
-
-}
-
 }
 
 }
@@ -902,54 +1010,6 @@ data: [94,95,95,96,96,96,97]
 
 ]
 
-},
-
-options: {
-
-responsive: true,
-
-plugins: {
-
-legend: {
-
-labels: {
-
-color: 'white'
-
-}
-
-}
-
-},
-
-scales: {
-
-x: {
-
-ticks: {
-
-color: 'white'
-
-}
-
-},
-
-y: {
-
-ticks: {
-
-color: 'white'
-
-},
-
-min: 80,
-
-max: 100
-
-}
-
-}
-
 }
 
 }
@@ -963,3 +1023,4 @@ max: 100
 </body>
 
 </html>
+
