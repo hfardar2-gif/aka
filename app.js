@@ -11,6 +11,13 @@ async function loadDashboard(){
 
         console.log(data);
 
+
+console.log(
+    data.cumulativeProductionReport
+);
+
+
+
         renderExecutiveSummary(
             data.totalProductionTill
         );
