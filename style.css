@@ -394,3 +394,106 @@ body{
     color:#FFB020;
 
 }
+/* MATERIAL BALANCE */
+
+.material-balance{
+
+    margin-bottom:24px;
+
+}
+
+.balance-card{
+
+    background:
+    linear-gradient(
+    180deg,
+    rgba(14,23,35,.96),
+    rgba(10,17,28,.96)
+    );
+
+    border-radius:24px;
+
+    padding:30px;
+
+    border:1px solid rgba(255,255,255,.05);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.balance-card::before{
+
+    content:'';
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    radial-gradient(
+    circle at top right,
+    rgba(0,229,255,.08),
+    transparent 60%
+    );
+
+}
+
+.balance-header{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    margin-bottom:24px;
+
+    color:#00E5FF;
+
+    letter-spacing:1px;
+
+}
+
+.balance-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:16px 0;
+
+    border-top:1px solid rgba(255,255,255,.05);
+
+}
+
+.balance-row span{
+
+    color:#8EA4C1;
+
+    font-size:15px;
+
+}
+
+.balance-row strong{
+
+    font-size:24px;
+
+    font-weight:700;
+
+    color:white;
+
+}
+
+.ready-ship{
+
+    color:#00FFAE !important;
+
+}
+
+.scrap-value{
+
+    color:#FF5B6E !important;
+
+}
