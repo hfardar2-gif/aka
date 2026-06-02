@@ -1,0 +1,79 @@
+{
+  "reportInfo": {
+    "title": "AKA Coil Processing Report",
+    "lastUpdate": "2026-06-02",
+    "batch": "Batch-01"
+  },
+
+  "totalProductionTill": {
+    "inputCoilsTon": 2073.75,
+    "inputCoilsQty": 121,
+    "picklingTon": 2025.874,
+    "rollingTon": 1872.574,
+    "galvanizedTon": 1035.386,
+    "soldTon": 251.261
+  },
+
+  "warehouseWIP": {
+    "unpickled": 47.876,
+    "pickled": 153.3,
+    "rolled": 837.188
+  },
+
+  "scrapSpira": {
+    "rolling": 29.933,
+    "galvanizing": 26.206
+  },
+
+  "materialBalance": {
+    "factoryInput": 2073.75,
+    "finalProduct": 1009.18,
+    "warehouseWIP": 1035.386,
+    "warehouseWIPSold": 784.125,
+    "readyToShip": 757.919,
+    "totalScrap": 56.139
+  },
+
+  "yieldAnalysis": {
+    "picklingYield": 100,
+    "rollingYield": 53.69,
+    "galvanizingYield": 97.47,
+    "coilToCoilYield": 96.57
+  },
+
+  "transportStatus": {
+    "underLoading": 0,
+    "readyWarehouse": 758.17
+  },
+
+  "salesReport": [
+    {
+      "date": "2026-05-17",
+      "buyer": "Dashtestan",
+      "tonnage": 150.181,
+      "amount": "283,941,238,000"
+    },
+
+    {
+      "date": "2026-05-18",
+      "buyer": "Hirad Co.",
+      "tonnage": 52.33,
+      "amount": "102,187,794,566"
+    },
+
+    {
+      "date": "2026-05-19",
+      "buyer": "Hirad Co.",
+      "tonnage": 48.75,
+      "amount": "95,062,485,375"
+    }
+  ],
+
+  "notes": [
+    "It has been planned that all coils will be galvanized within 4 weeks as of 2026-05-12.",
+
+    "Every galvanized coil produced is immediately placed in the sales and shipment program.",
+
+    "Production progress compared to plan reached 100% as of 2026-05-28."
+  ]
+}
