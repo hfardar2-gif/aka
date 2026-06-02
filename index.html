@@ -1,0 +1,965 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Executive Factory MIS</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+body {
+
+font-family: 'Inter', sans-serif;
+
+background:
+linear-gradient(
+135deg,
+#0f172a,
+#111827,
+#020617
+);
+
+min-height: 100vh;
+
+color: white;
+
+}
+
+.glass {
+
+background: rgba(255,255,255,0.05);
+
+backdrop-filter: blur(14px);
+
+border: 1px solid rgba(255,255,255,0.08);
+
+box-shadow:
+0 8px 32px rgba(0,0,0,0.35);
+
+}
+
+.kpi-card {
+
+transition: all 0.3s ease;
+
+}
+
+.kpi-card:hover {
+
+transform: translateY(-4px);
+
+box-shadow:
+0 10px 30px rgba(0,0,0,0.4);
+
+}
+
+.glow-green {
+
+box-shadow:
+0 0 25px rgba(34,197,94,0.5);
+
+}
+
+.glow-yellow {
+
+box-shadow:
+0 0 25px rgba(250,204,21,0.4);
+
+}
+
+.glow-red {
+
+box-shadow:
+0 0 25px rgba(239,68,68,0.5);
+
+}
+
+.table-dark th {
+
+background: rgba(255,255,255,0.08);
+
+}
+
+.table-dark td {
+
+background: rgba(255,255,255,0.03);
+
+}
+
+.status-light {
+
+animation: pulse 2s infinite;
+
+}
+
+@keyframes pulse {
+
+0% {
+
+transform: scale(1);
+
+opacity: 1;
+
+}
+
+50% {
+
+transform: scale(1.25);
+
+opacity: 0.7;
+
+}
+
+100% {
+
+transform: scale(1);
+
+opacity: 1;
+
+}
+
+}
+
+.fade-in {
+
+animation: fadeIn 1s ease;
+
+}
+
+@keyframes fadeIn {
+
+from {
+
+opacity: 0;
+
+transform: translateY(10px);
+
+}
+
+to {
+
+opacity: 1;
+
+transform: translateY(0);
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body class="p-5">
+
+<div class="max-w-7xl mx-auto">
+
+<!-- HEADER -->
+
+<div class="glass rounded-3xl p-8 mb-6 fade-in">
+
+<div class="flex flex-col md:flex-row justify-between items-center">
+
+<div>
+
+<h1 class="text-4xl font-extrabold tracking-wide">
+
+EXECUTIVE FACTORY MIS
+
+</h1>
+
+<p class="text-slate-300 mt-2 text-lg">
+
+Production • Yield • Sales • Shipment • Analytics
+
+</p>
+
+</div>
+
+<div class="mt-5 md:mt-0 text-right">
+
+<div class="text-slate-400">
+Report Date
+</div>
+
+<div id="reportDate"
+class="text-2xl font-bold mt-1">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- TOP KPI -->
+
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
+
+<div class="glass rounded-2xl p-5 kpi-card">
+
+<div class="text-slate-400 text-sm">
+Input Coils
+</div>
+
+<div id="inputCoils"
+class="text-4xl font-extrabold mt-3">
+</div>
+
+<div class="text-green-400 mt-2 text-sm">
+▲ Daily Production
+</div>
+
+</div>
+
+<div class="glass rounded-2xl p-5 kpi-card">
+
+<div class="text-slate-400 text-sm">
+Galvanized
+</div>
+
+<div id="galvanized"
+class="text-4xl font-extrabold mt-3">
+</div>
+
+<div class="text-cyan-400 mt-2 text-sm">
+Factory Output
+</div>
+
+</div>
+
+<div class="glass rounded-2xl p-5 kpi-card">
+
+<div class="text-slate-400 text-sm">
+Total Sales
+</div>
+
+<div id="totalSales"
+class="text-4xl font-extrabold mt-3">
+</div>
+
+<div class="text-emerald-400 mt-2 text-sm">
+Revenue Flow
+</div>
+
+</div>
+
+<div class="glass rounded-2xl p-5 kpi-card">
+
+<div class="text-slate-400 text-sm">
+Shipment
+</div>
+
+<div id="shipmentStatus"
+class="text-4xl font-extrabold mt-3">
+</div>
+
+<div class="text-orange-400 mt-2 text-sm">
+Logistics Status
+</div>
+
+</div>
+
+</div>
+
+<!-- YIELD -->
+
+<div class="glass rounded-3xl p-6 mb-6 fade-in">
+
+<div class="flex justify-between items-center mb-6">
+
+<h2 class="text-2xl font-bold">
+YIELD CONTROL CENTER
+</h2>
+
+<div class="text-slate-400">
+Realtime KPI Monitoring
+</div>
+
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+
+<div id="picklingCard"
+class="rounded-2xl p-5 kpi-card">
+
+<div class="flex justify-between items-center">
+
+<div class="text-slate-300">
+Pickling
+</div>
+
+<div id="picklingLight"
+class="w-4 h-4 rounded-full status-light">
+</div>
+
+</div>
+
+<div id="picklingYield"
+class="text-5xl font-extrabold mt-5">
+</div>
+
+<div id="picklingAlarm"
+class="mt-4 font-bold">
+</div>
+
+</div>
+
+<div id="rollingCard"
+class="rounded-2xl p-5 kpi-card">
+
+<div class="flex justify-between items-center">
+
+<div class="text-slate-300">
+Rolling
+</div>
+
+<div id="rollingLight"
+class="w-4 h-4 rounded-full status-light">
+</div>
+
+</div>
+
+<div id="rollingYield"
+class="text-5xl font-extrabold mt-5">
+</div>
+
+<div id="rollingAlarm"
+class="mt-4 font-bold">
+</div>
+
+</div>
+
+<div id="galvanizingCard"
+class="rounded-2xl p-5 kpi-card">
+
+<div class="flex justify-between items-center">
+
+<div class="text-slate-300">
+Galvanizing
+</div>
+
+<div id="galvanizingLight"
+class="w-4 h-4 rounded-full status-light">
+</div>
+
+</div>
+
+<div id="galvanizingYield"
+class="text-5xl font-extrabold mt-5">
+</div>
+
+<div id="galvanizingAlarm"
+class="mt-4 font-bold">
+</div>
+
+</div>
+
+<div id="coilCard"
+class="rounded-2xl p-5 kpi-card">
+
+<div class="flex justify-between items-center">
+
+<div class="text-slate-300">
+Coil Yield
+</div>
+
+<div id="coilLight"
+class="w-4 h-4 rounded-full status-light">
+</div>
+
+</div>
+
+<div id="coilYield"
+class="text-5xl font-extrabold mt-5">
+</div>
+
+<div id="coilAlarm"
+class="mt-4 font-bold">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- CHARTS -->
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+
+<div class="glass rounded-3xl p-6">
+
+<div class="flex justify-between items-center mb-6">
+
+<h2 class="text-2xl font-bold">
+Production Trend
+</h2>
+
+<div class="text-cyan-400">
+Live Analytics
+</div>
+
+</div>
+
+<canvas id="productionChart"></canvas>
+
+</div>
+
+<div class="glass rounded-3xl p-6">
+
+<div class="flex justify-between items-center mb-6">
+
+<h2 class="text-2xl font-bold">
+Yield Performance
+</h2>
+
+<div class="text-yellow-400">
+Efficiency Analysis
+</div>
+
+</div>
+
+<canvas id="yieldChart"></canvas>
+
+</div>
+
+</div>
+
+<!-- TABLES -->
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+
+<!-- SALES -->
+
+<div class="glass rounded-3xl p-6">
+
+<h2 class="text-2xl font-bold mb-6">
+Sales Report
+</h2>
+
+<div class="overflow-x-auto">
+
+<table class="w-full table-dark rounded-xl overflow-hidden">
+
+<thead>
+
+<tr>
+
+<th class="p-4 text-left">
+Domestic
+</th>
+
+<th class="p-4 text-left">
+Export
+</th>
+
+<th class="p-4 text-left">
+Invoice
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td class="p-4" id="domesticSales"></td>
+
+<td class="p-4" id="exportSales"></td>
+
+<td class="p-4" id="readyInvoice"></td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- SHIPMENT -->
+
+<div class="glass rounded-3xl p-6">
+
+<h2 class="text-2xl font-bold mb-6">
+Shipment Status
+</h2>
+
+<div class="overflow-x-auto">
+
+<table class="w-full table-dark rounded-xl overflow-hidden">
+
+<thead>
+
+<tr>
+
+<th class="p-4 text-left">
+Ready
+</th>
+
+<th class="p-4 text-left">
+Dispatch
+</th>
+
+<th class="p-4 text-left">
+Pending
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td class="p-4" id="readyShip"></td>
+
+<td class="p-4" id="dispatched"></td>
+
+<td class="p-4" id="pendingTrucks"></td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- HISTORY -->
+
+<div class="glass rounded-3xl p-6 fade-in">
+
+<div class="flex justify-between items-center mb-6">
+
+<h2 class="text-2xl font-bold">
+Cumulative Production Report
+</h2>
+
+<div class="text-slate-400">
+Historical Production Data
+</div>
+
+</div>
+
+<div class="overflow-x-auto">
+
+<table class="w-full table-dark rounded-xl overflow-hidden">
+
+<thead>
+
+<tr>
+
+<th class="p-4 text-left">
+Date
+</th>
+
+<th class="p-4 text-left">
+Input
+</th>
+
+<th class="p-4 text-left">
+Pickling
+</th>
+
+<th class="p-4 text-left">
+Rolling
+</th>
+
+<th class="p-4 text-left">
+Galvanized
+</th>
+
+<th class="p-4 text-left">
+Sold
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="historyTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+fetch('data.json')
+
+.then(response => response.json())
+
+.then(data => {
+
+document.getElementById('reportDate').innerText =
+data.date;
+
+document.getElementById('inputCoils').innerText =
+data.inputCoils;
+
+document.getElementById('galvanized').innerText =
+data.galvanized;
+
+document.getElementById('totalSales').innerText =
+data.totalSales;
+
+document.getElementById('shipmentStatus').innerText =
+data.shipmentStatus;
+
+document.getElementById('domesticSales').innerText =
+data.domesticSales;
+
+document.getElementById('exportSales').innerText =
+data.exportSales;
+
+document.getElementById('readyInvoice').innerText =
+data.readyInvoice;
+
+document.getElementById('readyShip').innerText =
+data.readyShip;
+
+document.getElementById('dispatched').innerText =
+data.dispatched;
+
+document.getElementById('pendingTrucks').innerText =
+data.pendingTrucks;
+
+// KPI SYSTEM
+
+function setupYield(name, value) {
+
+const num = parseFloat(value);
+
+const card =
+document.getElementById(name + 'Card');
+
+const light =
+document.getElementById(name + 'Light');
+
+const yieldEl =
+document.getElementById(name + 'Yield');
+
+const alarm =
+document.getElementById(name + 'Alarm');
+
+yieldEl.innerText = value;
+
+if (num >= 95) {
+
+card.className +=
+' glass glow-green';
+
+light.className +=
+' bg-green-500';
+
+yieldEl.className +=
+' text-green-400';
+
+alarm.innerText =
+'🟢 NORMAL';
+
+alarm.className +=
+' text-green-400';
+
+}
+
+else if (num >= 85) {
+
+card.className +=
+' glass glow-yellow';
+
+light.className +=
+' bg-yellow-400';
+
+yieldEl.className +=
+' text-yellow-300';
+
+alarm.innerText =
+'🟡 WARNING';
+
+alarm.className +=
+' text-yellow-300';
+
+}
+
+else {
+
+card.className +=
+' glass glow-red';
+
+light.className +=
+' bg-red-500';
+
+yieldEl.className +=
+' text-red-400';
+
+alarm.innerText =
+'🔴 CRITICAL';
+
+alarm.className +=
+' text-red-400';
+
+}
+
+}
+
+setupYield(
+'pickling',
+data.picklingYield
+);
+
+setupYield(
+'rolling',
+data.rollingYield
+);
+
+setupYield(
+'galvanizing',
+data.galvanizingYield
+);
+
+setupYield(
+'coil',
+data.coilYield
+);
+
+// HISTORY TABLE
+
+const historyTable =
+document.getElementById('historyTable');
+
+data.history.forEach(row => {
+
+historyTable.innerHTML += `
+
+<tr>
+
+<td class="p-4">${row.date}</td>
+
+<td class="p-4">${row.input}</td>
+
+<td class="p-4">${row.pickling}</td>
+
+<td class="p-4">${row.rolling}</td>
+
+<td class="p-4">${row.galvanized}</td>
+
+<td class="p-4">${row.sold}</td>
+
+</tr>
+
+`;
+
+});
+
+// CHARTS
+
+const labels =
+data.history.map(x => x.date);
+
+new Chart(
+
+document.getElementById('productionChart'),
+
+{
+
+type: 'line',
+
+data: {
+
+labels: labels,
+
+datasets: [
+
+{
+label: 'Input',
+data: data.history.map(x => x.input),
+borderWidth: 3,
+tension: 0.4
+},
+
+{
+label: 'Rolling',
+data: data.history.map(x => x.rolling),
+borderWidth: 3,
+tension: 0.4
+},
+
+{
+label: 'Galvanized',
+data: data.history.map(x => x.galvanized),
+borderWidth: 3,
+tension: 0.4
+}
+
+]
+
+},
+
+options: {
+
+responsive: true,
+
+plugins: {
+
+legend: {
+
+labels: {
+
+color: 'white'
+
+}
+
+}
+
+},
+
+scales: {
+
+x: {
+
+ticks: {
+
+color: 'white'
+
+}
+
+},
+
+y: {
+
+ticks: {
+
+color: 'white'
+
+}
+
+}
+
+}
+
+}
+
+}
+
+);
+
+new Chart(
+
+document.getElementById('yieldChart'),
+
+{
+
+type: 'bar',
+
+data: {
+
+labels: labels,
+
+datasets: [
+
+{
+label: 'Rolling Yield',
+data: [88,90,92,93,94,95,96]
+},
+
+{
+label: 'Coil Yield',
+data: [94,95,95,96,96,96,97]
+}
+
+]
+
+},
+
+options: {
+
+responsive: true,
+
+plugins: {
+
+legend: {
+
+labels: {
+
+color: 'white'
+
+}
+
+}
+
+},
+
+scales: {
+
+x: {
+
+ticks: {
+
+color: 'white'
+
+}
+
+},
+
+y: {
+
+ticks: {
+
+color: 'white'
+
+},
+
+min: 80,
+
+max: 100
+
+}
+
+}
+
+}
+
+}
+
+);
+
+});
+
+</script>
+
+</body>
+
+</html>

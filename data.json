@@ -1,0 +1,105 @@
+
+{
+  "date": "2026-06-01",
+
+  "inputCoils": 2073.75,
+  "inputQty": 121,
+  "pickling": 2025.87,
+  "rolling": 1872.57,
+  "galvanized": 1035.38,
+  "sold": 251.26,
+
+  "picklingYield": "100%",
+  "rollingYield": "53.6%",
+  "galvanizingYield": "97.4%",
+  "coilYield": "96.5%",
+
+  "domesticSales": 180,
+  "exportSales": 71.26,
+  "totalSales": 251.26,
+  "readyInvoice": 130,
+
+  "readyShip": 758.17,
+  "dispatched": 500,
+  "pendingTrucks": 6,
+  "shipmentStatus": "NORMAL",
+
+  "unpickled": 47.88,
+  "pickled": 153.30,
+  "rolled": 837.19,
+
+  "factoryInput": 2073.75,
+  "finalProduct": 1009.17,
+  "warehouseWip": 1035.38,
+  "totalScrap": 56.13,
+
+  "history": [
+
+    {
+      "date": "2026-05-25",
+      "input": 1750,
+      "pickling": 1700,
+      "rolling": 1550,
+      "galvanized": 1350,
+      "sold": 180
+    },
+
+    {
+      "date": "2026-05-26",
+      "input": 1780,
+      "pickling": 1720,
+      "rolling": 1580,
+      "galvanized": 1400,
+      "sold": 190
+    },
+
+    {
+      "date": "2026-05-27",
+      "input": 1820,
+      "pickling": 1760,
+      "rolling": 1620,
+      "galvanized": 1450,
+      "sold": 195
+    },
+
+    {
+      "date": "2026-05-28",
+      "input": 1880,
+      "pickling": 1810,
+      "rolling": 1660,
+      "galvanized": 1480,
+      "sold": 210
+    },
+
+    {
+      "date": "2026-05-29",
+      "input": 1950,
+      "pickling": 1880,
+      "rolling": 1700,
+      "galvanized": 1500,
+      "sold": 240
+    },
+
+    {
+      "date": "2026-05-30",
+      "input": 2050,
+      "pickling": 1980,
+      "rolling": 1800,
+      "galvanized": 1600,
+      "sold": 250
+    },
+
+    {
+      "date": "2026-06-01",
+      "input": 2073.75,
+      "pickling": 2025.87,
+      "rolling": 1872.57,
+      "galvanized": 1035.38,
+      "sold": 251.26
+    }
+
+  ]
+}
+
+
+
