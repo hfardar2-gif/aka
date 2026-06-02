@@ -1,142 +1,197 @@
 <!DOCTYPE html>
-<html lang="fa" dir="ltr">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>AKA Executive Factory MIS</title>
-    <link rel="stylesheet" href="style.css"/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>AKA Steel Intelligence Center</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+
 </head>
+
 <body>
 
-<div class="layout">
+<div class="dashboard">
+
     <aside class="sidebar">
-        <div class="brand">
-            <div class="brand-box">AKA</div>
-            <div>
-                <h1>کارخانه آکا</h1>
-                <p>سیستم مدیریت اجرایی</p>
+
+        <div>
+
+            <div class="logo">
+                <h1>AKA</h1>
+                <span>STEEL INTELLIGENCE</span>
             </div>
+
+            <div class="nav">
+
+                <div class="nav-item active">
+                    <div class="nav-icon">⌂</div>
+                    <div>Overview</div>
+                </div>
+
+                <div class="nav-item">
+                    <div class="nav-icon">⚙</div>
+                    <div>Production</div>
+                </div>
+
+                <div class="nav-item">
+                    <div class="nav-icon">◉</div>
+                    <div>Equipment</div>
+                </div>
+
+                <div class="nav-item">
+                    <div class="nav-icon">☰</div>
+                    <div>Inventory</div>
+                </div>
+
+                <div class="nav-item">
+                    <div class="nav-icon">⚠</div>
+                    <div>Alerts</div>
+                </div>
+
+            </div>
+
         </div>
 
-        <nav>
-            <a href="#" class="nav-item active" data-page="dashboard"><i class="fas fa-home"></i> داشبورد</a>
-            <a href="#" class="nav-item" data-page="production"><i class="fas fa-industry"></i> تولید</a>
-            <a href="#" class="nav-item" data-page="yield"><i class="fas fa-chart-line"></i> بازده</a>
-            <a href="#" class="nav-item" data-page="sales"><i class="fas fa-truck"></i> فروش و ارسال</a>
-        </nav>
+        <div class="user-card">
+            <strong>Administrator</strong>
+            <br><br>
+            <small>AKA Industrial Platform</small>
+        </div>
+
     </aside>
 
     <main class="main">
+
         <div class="topbar">
+
+            <div class="title">
+                <h2>AKA Steel Intelligence Center</h2>
+                <p>Industrial Executive Monitoring Platform</p>
+            </div>
+
+            <div class="top-right">
+
+                <div class="status-card">
+                    <div class="status-label">System Status</div>
+                    <div class="status-value green">NORMAL</div>
+                </div>
+
+                <div class="status-card">
+                    <div class="status-label">Runtime</div>
+                    <div class="status-value">23:45:12</div>
+                </div>
+
+                <div class="status-card">
+                    <div class="status-label">Critical Alerts</div>
+                    <div class="status-value red">3</div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <section class="kpi-grid">
+
+            <div class="kpi">
+                <div class="kpi-title">Daily Production</div>
+                <div class="kpi-value">2,073</div>
+                <div class="kpi-trend">↑ +12.4%</div>
+            </div>
+
+            <div class="kpi">
+                <div class="kpi-title">Monthly Output</div>
+                <div class="kpi-value">51,630</div>
+                <div class="kpi-trend">↑ +8.7%</div>
+            </div>
+
+            <div class="kpi">
+                <div class="kpi-title">Yield Ratio</div>
+                <div class="kpi-value">96.5%</div>
+                <div class="kpi-trend">↑ +0.68%</div>
+            </div>
+
+            <div class="kpi">
+                <div class="kpi-title">Equipment Efficiency</div>
+                <div class="kpi-value">92.3%</div>
+                <div class="kpi-trend">↑ +2.1%</div>
+            </div>
+
+            <div class="kpi">
+                <div class="kpi-title">Shipment Volume</div>
+                <div class="kpi-value">1,920</div>
+                <div class="kpi-trend">↑ +9.3%</div>
+            </div>
+
+        </section>
+
+        <section class="content-grid">
+
             <div>
-                <h2>گزارش روزانه کارخانه</h2>
-                <p id="reportDate">۱۴۰۵/۰۳/۰۲ - ۲۰۲۶-۰۶-۰۲</p>
+
+                <div class="card">
+
+                    <div class="card-title">
+                        <h3>Production Trend</h3>
+                        <span>24 Hours</span>
+                    </div>
+
+                    <div id="lineChart" class="chart"></div>
+
+                </div>
+
             </div>
+
             <div>
-                <select id="dateFilter">
-                    <option value="2026-06-02">۰۲ خرداد ۱۴۰۵</option>
-                    <!-- بعداً روزهای دیگر اضافه می‌شود -->
-                </select>
-            </div>
-        </div>
 
-        <!-- DASHBOARD -->
-        <div id="dashboard" class="page">
-            <section class="kpi-grid">
-                <div class="card kpi-card blue">
-                    <i class="fas fa-coil"></i>
-                    <p>ورودی کلاف</p>
-                    <h3 id="inputCoils">2073.75</h3>
-                    <span>تن</span>
-                </div>
-                <div class="card kpi-card cyan">
-                    <i class="fas fa-fire"></i>
-                    <p>اسیدشویی</p>
-                    <h3 id="pickling">2025.87</h3>
-                    <span>تن</span>
-                </div>
-                <div class="card kpi-card purple">
-                    <i class="fas fa-compress"></i>
-                    <p>نورد</p>
-                    <h3 id="rolling">1872.57</h3>
-                    <span>تن</span>
-                </div>
-                <div class="card kpi-card amber">
-                    <i class="fas fa-shield-alt"></i>
-                    <p>گالوانیزه</p>
-                    <h3 id="galvanized">1035.39</h3>
-                    <span>تن</span>
-                </div>
-            </section>
-        </div>
+                <div class="card">
 
-        <!-- PRODUCTION -->
-        <div id="production" class="page hidden">
-            <h1><i class="fas fa-industry"></i> وضعیت تولید</h1>
-            <canvas id="cumulativeChart" height="140"></canvas>
-        </div>
+                    <div class="card-title">
+                        <h3>Product Mix</h3>
+                    </div>
 
-        <!-- YIELD -->
-        <div id="yield" class="page hidden">
-            <h1><i class="fas fa-chart-line"></i> بازده تولید</h1>
-            <div class="grid">
-                <div class="card">
-                    <h3>بازده اسیدشویی</h3>
-                    <h2 class="success">۱۰۰٪</h2>
-                </div>
-                <div class="card">
-                    <h3>بازده نورد</h3>
-                    <h2 class="warning">۵۳.۶۹٪</h2>
-                </div>
-                <div class="card">
-                    <h3>بازده گالوانیزه</h3>
-                    <h2 class="success">۹۷.۴۷٪</h2>
-                </div>
-                <div class="card">
-                    <h3>بازده کلی (کلاف به کلاف)</h3>
-                    <h2 class="success">۹۶.۵۷٪</h2>
-                </div>
-            </div>
-        </div>
+                    <div id="pieChart" class="chart"></div>
 
-        <!-- SALES -->
-        <div id="sales" class="page hidden">
-            <h1><i class="fas fa-truck"></i> فروش و ارسال</h1>
-            <div class="grid">
-                <div class="card">
-                    <h3>آماده ارسال</h3>
-                    <h2>۷۵۷.۹۲ تن</h2>
                 </div>
-                <div class="card">
-                    <h3>فروخته شده</h3>
-                    <h2>۲۵۱.۲۶ تن</h2>
-                </div>
-                <div class="card">
-                    <h3>اسکرپ و ضایعات</h3>
-                    <h2>۵۶.۱۴ تن</h2>
-                </div>
+
             </div>
-            <h3>لیست کلاف‌های گالوانیزه</h3>
-            <div class="table-container">
-                <table id="coilsTable">
-                    <thead>
-                        <tr>
-                            <th>شماره کلاف</th>
-                            <th>ضخامت</th>
-                            <th>وزن (kg)</th>
-                            <th>وضعیت</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+
+            <div>
+
+                <div class="card">
+
+                    <div class="card-title">
+                        <h3>Realtime Alerts</h3>
+                    </div>
+
+                    <div class="alert red-alert">
+                        <h4>Furnace Temperature Alert</h4>
+                        <p>Temperature exceeded threshold.</p>
+                    </div>
+
+                    <div class="alert orange-alert">
+                        <h4>Cooling Pressure Warning</h4>
+                        <p>Pressure dropped below normal level.</p>
+                    </div>
+
+                </div>
+
             </div>
-        </div>
+
+        </section>
+
     </main>
+
 </div>
 
 <script src="app.js"></script>
+
 </body>
 </html>
