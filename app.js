@@ -19,6 +19,12 @@ async function loadDashboard(){
             data.totalProductionTill
         );
 
+              renderProductionChart(
+                 data.cumulativeProductionReport
+              );
+
+
+
     }
 
     catch(error){
@@ -197,6 +203,123 @@ function renderMaterialFlow(data){
     }).join('');
 
 }
+
+function renderProductionChart(data){
+
+    const chartDom =
+    document.getElementById(
+        'productionChart'
+    );
+
+    const chart =
+    echarts.init(chartDom);
+
+    const dates =
+    data.map(item => item.date);
+
+    const pickling =
+    data.map(item => item.pickling);
+
+    const rolling =
+    data.map(item => item.rolling);
+
+    const galvanized =
+    data.map(item => item.galvanized);
+
+    const sold =
+    data.map(item => item.sold);
+
+    const option = {
+
+        backgroundColor:'transparent',
+
+        tooltip:{
+            trigger:'axis'
+        },
+
+        legend:{
+            top:0,
+            textStyle:{
+                color:'#8EA4C1'
+            }
+        },
+
+        grid:{
+            left:'3%',
+            right:'3%',
+            bottom:'3%',
+            containLabel:true
+        },
+
+        xAxis:{
+            type:'category',
+            data:dates,
+            axisLine:{
+                lineStyle:{
+                    color:'#334155'
+                }
+            },
+            axisLabel:{
+                color:'#8EA4C1'
+            }
+        },
+
+        yAxis:{
+            type:'value',
+            axisLine:{
+                lineStyle:{
+                    color:'#334155'
+                }
+            },
+            splitLine:{
+                lineStyle:{
+                    color:'rgba(255,255,255,.05)'
+                }
+            },
+            axisLabel:{
+                color:'#8EA4C1'
+            }
+        },
+
+        series:[
+
+            {
+                name:'Pickling',
+                type:'line',
+                smooth:true,
+                data:pickling
+            },
+
+            {
+                name:'Rolling',
+                type:'line',
+                smooth:true,
+                data:rolling
+            },
+
+            {
+                name:'Galvanized',
+                type:'line',
+                smooth:true,
+                data:galvanized
+            },
+
+            {
+                name:'Sold',
+                type:'line',
+                smooth:true,
+                data:sold
+            }
+
+        ]
+
+    };
+
+    chart.setOption(option);
+
+}
+
+
 
 /* START */
 
