@@ -187,3 +187,103 @@ body{
     0 0 10px #FFB020;
 
 }
+/* FACTORY FLOW */
+
+.factory-flow{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+    margin-bottom:24px;
+
+}
+
+.flow-box{
+
+    flex:1;
+
+    padding:22px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    background:
+    linear-gradient(
+    180deg,
+    rgba(0,229,255,.08),
+    rgba(255,255,255,.03)
+    );
+
+    border:1px solid rgba(0,229,255,.18);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.flow-box::before{
+
+    content:'';
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.08),
+    transparent
+    );
+
+    transform:translateX(-100%);
+
+    animation:scan 4s linear infinite;
+
+}
+
+.flow-box h3{
+
+    font-size:18px;
+
+    margin-bottom:8px;
+
+    letter-spacing:1px;
+
+}
+
+.flow-box small{
+
+    color:#8EA4C1;
+
+    font-size:12px;
+
+}
+
+.flow-line{
+
+    width:40px;
+    height:2px;
+
+    background:#00E5FF;
+
+    box-shadow:
+    0 0 10px #00E5FF;
+
+}
+
+@keyframes scan{
+
+    100%{
+        transform:translateX(100%);
+    }
+
+}
