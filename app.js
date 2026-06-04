@@ -31,6 +31,9 @@ async function loadDashboard(){
         renderProductionChart(
             data.cumulativeProductionReport
         );
+        renderKPI(
+    data.totalProductionTill
+);
 
     }
 
@@ -166,6 +169,74 @@ function renderMaterialFlow(data){
     `;
 
 }
+/* =====================================
+   kpi 
+===================================== */
+function renderKPI(data){
+
+    const grid =
+    document.getElementById(
+        'kpiGrid'
+    );
+
+    const overallYield =
+    (
+        data.galvanizedTon /
+        data.inputCoilsTon
+    ) * 100;
+
+    const salesConversion =
+    (
+        data.soldTon /
+        data.galvanizedTon
+    ) * 100;
+
+    const utilization =
+    (
+        data.rollingTon /
+        data.inputCoilsTon
+    ) * 100;
+
+    grid.innerHTML = `
+
+        <div class="kpi-card">
+
+            <div class="kpi-label">
+                OVERALL YIELD
+            </div>
+
+            <div class="kpi-value">
+                ${overallYield.toFixed(1)}%
+            </div>
+
+        </div>
+
+        <div class="kpi-card">
+
+            <div class="kpi-label">
+                SALES CONVERSION
+            </div>
+
+            <div class="kpi-value">
+                ${salesConversion.toFixed(1)}%
+            </div>
+
+        </div>
+
+        <div class="kpi-card">
+
+            <div class="kpi-label">
+                FACTORY UTILIZATION
+            </div>
+
+            <div class="kpi-value">
+                ${utilization.toFixed(1)}%
+            </div>
+
+        </div>
+
+    `;
+}
 
 /* =====================================
    WAREHOUSE STATUS
@@ -218,7 +289,6 @@ function renderWarehouse(data){
 
     `;
 
-}
 
 /* =====================================
    PRODUCTION CHART
