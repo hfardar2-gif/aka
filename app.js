@@ -43,7 +43,9 @@ async function loadDashboard() {
 renderWIP(
     data.totalProductionTill
 );
-
+renderExecutiveSummary(
+    data.totalProductionTill
+);
        
 
     }
@@ -689,6 +691,32 @@ function renderWIP(data){
         </div>
 
     `;
+
+}
+function renderExecutiveSummary(data){
+
+    document.getElementById(
+        'inputValue'
+    ).innerHTML =
+    `${data.inputCoilsTon.toFixed(0)} T`;
+
+    document.getElementById(
+        'outputValue'
+    ).innerHTML =
+    `${data.galvanizedTon.toFixed(0)} T`;
+
+    document.getElementById(
+        'readyValue'
+    ).innerHTML =
+    `${(
+        data.galvanizedTon -
+        data.soldTon
+    ).toFixed(0)} T`;
+
+    document.getElementById(
+        'soldValue'
+    ).innerHTML =
+    `${data.soldTon.toFixed(0)} T`;
 
 }
 /* =====================================
