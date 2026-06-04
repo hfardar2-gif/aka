@@ -1,4 +1,3 @@
-
 {
   "totalProductionTill": {
     "inputCoilsTon": 2073.75,
@@ -7,6 +6,25 @@
     "rollingTon": 1872.574,
     "galvanizedTon": 1035.386,
     "soldTon": 251.261
+  },
+
+  "warehouse": {
+    "unpickled": 47.876,
+    "pickled": 153.300,
+    "rolled": 837.188
+  },
+
+  "yield": {
+    "pickling": 100.00,
+    "rolling": 53.69,
+    "galvanizing": 97.47
+  },
+
+  "materialBalance": {
+    "factoryInput": 2073.75,
+    "finalProduct": 1009.18,
+    "readyToShip": 757.919,
+    "scrap": 56.139
   },
 
   "cumulativeProductionReport": [
@@ -25,16 +43,7 @@
       "rolling":298.926,
       "galvanized":129.19,
       "sold":0
-    },
-
-    {
-      "date":"2026-05-12",
-      "pickling":544.37,
-      "rolling":298.926,
-      "galvanized":129.19,
-      "sold":0
     }
 
   ]
 }
-
