@@ -12,9 +12,9 @@ async function loadDashboard() {
         renderMaterialFlow(
             data.totalProductionTill
         );
-        renderYield(
-    data.totalProductionTill
-);
+         renderYieldGauge(
+            data.totalProductionTill
+            );
 
         renderWarehouse({
 
@@ -463,83 +463,79 @@ function renderProductionTable(data){
 
     `;
 }
-function renderYield(data){
+function renderYieldGauge(data){
 
     const grid =
     document.getElementById(
         'yieldGrid'
     );
 
-    const picklingYield =
-    (
-        data.picklingTon /
-        data.inputCoilsTon
-    ) * 100;
+    grid.innerHTML = `
 
-    const rollingYield =
-    (
-        data.rollingTon /
-        data.picklingTon
-    ) * 100;
+        <div class="yield-card">
 
-    const galvanizingYield =
-    (
-        data.galvanizedTon /
-        data.rollingTon
-    ) * 100;
-
-    const items = [
-
-        {
-            name:'Pickling',
-            value:picklingYield
-        },
-
-        {
-            name:'Rolling',
-            value:rollingYield
-        },
-
-        {
-            name:'Galvanizing',
-            value:galvanizingYield
-        }
-
-    ];
-
-    grid.className =
-    'yield-grid';
-
-    grid.innerHTML =
-    items.map(item => `
-
-        <div class="yield-item">
-
-            <div class="yield-header">
-
-                <div class="yield-name">
-                    ${item.name}
-                </div>
-
-                <div class="yield-percent">
-                    ${item.value.toFixed(1)}%
-                </div>
-
+            <div class="yield-title">
+                PICKLING YIELD
             </div>
 
-            <div class="yield-bar">
-
-                <div
-                    class="yield-fill"
-                    style="
-                    width:${item.value}%">
-                </div>
-
+            <div
+                id="picklingGauge"
+                class="yield-chart">
             </div>
 
         </div>
 
-    `).join('');
+        <div class="yield-card">
+
+            <div class="yield-title">
+                ROLLING YIELD
+            </div>
+
+            <div
+                id="rollingGauge"
+                class="yield-chart">
+            </div>
+
+        </div>
+
+        <div class="yield-card">
+
+            <div class="yield-title">
+                GALVANIZING YIELD
+            </div>
+
+            <div
+                id="galvanizingGauge"
+                class="yield-chart">
+            </div>
+
+        </div>
+
+    `;
+
+    createGauge(
+        'picklingGauge',
+        (
+            data.picklingTon /
+            data.inputCoilsTon
+        ) * 100
+    );
+
+    createGauge(
+        'rollingGauge',
+        (
+            data.rollingTon /
+            data.picklingTon
+        ) * 100
+    );
+
+    createGauge(
+        'galvanizingGauge',
+        (
+            data.galvanizedTon /
+            data.rollingTon
+        ) * 100
+    );
 
 }
 /* =====================================
