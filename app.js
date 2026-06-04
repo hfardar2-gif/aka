@@ -12,6 +12,22 @@ async function loadDashboard(){
             data.totalProductionTill
         );
 
+        renderWarehouse({
+
+            unpickled:
+                data.totalProductionTill.inputCoilsTon
+                - data.totalProductionTill.picklingTon,
+
+            pickled:
+                data.totalProductionTill.picklingTon
+                - data.totalProductionTill.rollingTon,
+
+            rolled:
+                data.totalProductionTill.rollingTon
+                - data.totalProductionTill.galvanizedTon
+
+        });
+
         renderProductionChart(
             data.cumulativeProductionReport
         );
@@ -29,7 +45,9 @@ async function loadDashboard(){
 
 }
 
-/* FACTORY LINES */
+/* =====================================
+   FACTORY LINES
+===================================== */
 
 function renderMaterialFlow(data){
 
@@ -54,14 +72,18 @@ function renderMaterialFlow(data){
             <div class="plant-row">
                 <span>Warehouse</span>
                 <strong>
-                    153.3 T
+                    ${(data.picklingTon - data.rollingTon).toFixed(1)} T
                 </strong>
             </div>
 
             <div class="plant-row">
                 <span>Yield</span>
                 <strong class="good">
-                    100%
+                    ${(
+                        data.picklingTon /
+                        data.inputCoilsTon *
+                        100
+                    ).toFixed(1)}%
                 </strong>
             </div>
 
@@ -87,14 +109,18 @@ function renderMaterialFlow(data){
             <div class="plant-row">
                 <span>Warehouse</span>
                 <strong>
-                    837.2 T
+                    ${(data.rollingTon - data.galvanizedTon).toFixed(1)} T
                 </strong>
             </div>
 
             <div class="plant-row">
                 <span>Yield</span>
                 <strong class="warning">
-                    53.7%
+                    ${(
+                        data.rollingTon /
+                        data.picklingTon *
+                        100
+                    ).toFixed(1)}%
                 </strong>
             </div>
 
@@ -118,16 +144,20 @@ function renderMaterialFlow(data){
             </div>
 
             <div class="plant-row">
-                <span>Ready To Ship</span>
+                <span>Sold</span>
                 <strong>
-                    757.9 T
+                    ${data.soldTon.toFixed(1)} T
                 </strong>
             </div>
 
             <div class="plant-row">
                 <span>Yield</span>
                 <strong class="good">
-                    97.5%
+                    ${(
+                        data.galvanizedTon /
+                        data.rollingTon *
+                        100
+                    ).toFixed(1)}%
                 </strong>
             </div>
 
@@ -137,7 +167,62 @@ function renderMaterialFlow(data){
 
 }
 
-/* CHART */
+/* =====================================
+   WAREHOUSE STATUS
+===================================== */
+
+function renderWarehouse(data){
+
+    const grid =
+    document.getElementById(
+        'warehouseGrid'
+    );
+
+    grid.innerHTML = `
+
+        <div class="warehouse-card">
+
+            <div class="warehouse-label">
+                UNPICKLED COILS
+            </div>
+
+            <div class="warehouse-value">
+                ${data.unpickled.toFixed(1)} T
+            </div>
+
+        </div>
+
+        <div class="warehouse-card">
+
+            <div class="warehouse-label">
+                PICKLED COILS
+            </div>
+
+            <div class="warehouse-value">
+                ${data.pickled.toFixed(1)} T
+            </div>
+
+        </div>
+
+        <div class="warehouse-card">
+
+            <div class="warehouse-label">
+                COLD ROLLED COILS
+            </div>
+
+            <div class="warehouse-value">
+                ${data.rolled.toFixed(1)} T
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+/* =====================================
+   PRODUCTION CHART
+===================================== */
 
 function renderProductionChart(data){
 
@@ -166,23 +251,44 @@ function renderProductionChart(data){
 
     chart.setOption({
 
+        backgroundColor:'transparent',
+
         tooltip:{
             trigger:'axis'
         },
 
         legend:{
+            top:10,
             textStyle:{
                 color:'#8EA4C1'
             }
         },
 
+        grid:{
+            left:'3%',
+            right:'3%',
+            bottom:'3%',
+            containLabel:true
+        },
+
         xAxis:{
             type:'category',
-            data:dates
+            data:dates,
+            axisLabel:{
+                color:'#8EA4C1'
+            }
         },
 
         yAxis:{
-            type:'value'
+            type:'value',
+            axisLabel:{
+                color:'#8EA4C1'
+            },
+            splitLine:{
+                lineStyle:{
+                    color:'rgba(255,255,255,.05)'
+                }
+            }
         },
 
         series:[
@@ -220,52 +326,9 @@ function renderProductionChart(data){
     });
 
 }
-function renderWarehouse(data){
 
-    const grid =
-    document.getElementById(
-        'warehouseGrid'
-    );
+/* =====================================
+   START
+===================================== */
 
-    grid.innerHTML = `
-
-    <div class="warehouse-card">
-
-        <div class="warehouse-label">
-            UNPICKLED
-        </div>
-
-        <div class="warehouse-value">
-            ${data.unpickled.toFixed(1)} T
-        </div>
-
-    </div>
-
-    <div class="warehouse-card">
-
-        <div class="warehouse-label">
-            PICKLED
-        </div>
-
-        <div class="warehouse-value">
-            ${data.pickled.toFixed(1)} T
-        </div>
-
-    </div>
-
-    <div class="warehouse-card">
-
-        <div class="warehouse-label">
-            ROLLED
-        </div>
-
-        <div class="warehouse-value">
-            ${data.rolled.toFixed(1)} T
-        </div>
-
-    </div>
-
-    `;
-
-}
 loadDashboard();
