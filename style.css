@@ -630,3 +630,69 @@ body{
     rgba(255,255,255,.02);
 
 }
+.yield-grid{
+
+    display:grid;
+
+    gap:24px;
+
+}
+
+.yield-item{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.yield-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+}
+
+.yield-name{
+
+    font-weight:700;
+
+}
+
+.yield-percent{
+
+    color:#3BA4FF;
+
+    font-weight:800;
+
+}
+
+.yield-bar{
+
+    height:14px;
+
+    background:#111B29;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+.yield-fill{
+
+    height:100%;
+
+    border-radius:20px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #3BA4FF,
+        #00FFAE
+    );
+
+}

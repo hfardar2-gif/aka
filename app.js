@@ -12,6 +12,9 @@ async function loadDashboard() {
         renderMaterialFlow(
             data.totalProductionTill
         );
+        renderYield(
+    data.totalProductionTill
+);
 
         renderWarehouse({
 
@@ -459,6 +462,85 @@ function renderProductionTable(data){
         </table>
 
     `;
+}
+function renderYield(data){
+
+    const grid =
+    document.getElementById(
+        'yieldGrid'
+    );
+
+    const picklingYield =
+    (
+        data.picklingTon /
+        data.inputCoilsTon
+    ) * 100;
+
+    const rollingYield =
+    (
+        data.rollingTon /
+        data.picklingTon
+    ) * 100;
+
+    const galvanizingYield =
+    (
+        data.galvanizedTon /
+        data.rollingTon
+    ) * 100;
+
+    const items = [
+
+        {
+            name:'Pickling',
+            value:picklingYield
+        },
+
+        {
+            name:'Rolling',
+            value:rollingYield
+        },
+
+        {
+            name:'Galvanizing',
+            value:galvanizingYield
+        }
+
+    ];
+
+    grid.className =
+    'yield-grid';
+
+    grid.innerHTML =
+    items.map(item => `
+
+        <div class="yield-item">
+
+            <div class="yield-header">
+
+                <div class="yield-name">
+                    ${item.name}
+                </div>
+
+                <div class="yield-percent">
+                    ${item.value.toFixed(1)}%
+                </div>
+
+            </div>
+
+            <div class="yield-bar">
+
+                <div
+                    class="yield-fill"
+                    style="
+                    width:${item.value}%">
+                </div>
+
+            </div>
+
+        </div>
+
+    `).join('');
+
 }
 /* =====================================
    START
