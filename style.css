@@ -589,3 +589,44 @@ body{
     }
 
 }
+.table-section{
+
+    margin-top:30px;
+
+}
+
+.production-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.production-table th{
+
+    background:#111B29;
+
+    color:#8EA4C1;
+
+    text-align:left;
+
+    padding:16px;
+
+}
+
+.production-table td{
+
+    padding:16px;
+
+    border-top:
+    1px solid rgba(255,255,255,.05);
+
+}
+
+.production-table tr:hover{
+
+    background:
+    rgba(255,255,255,.02);
+
+}

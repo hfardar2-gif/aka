@@ -35,6 +35,9 @@ async function loadDashboard() {
         renderKPI(
             data.totalProductionTill
         );
+        renderProductionTable(
+    data.cumulativeProductionReport
+);
 
     }
 
@@ -398,7 +401,65 @@ function renderProductionChart(data) {
     });
 
 }
+function renderProductionTable(data){
 
+    const table =
+    document.getElementById(
+        'productionTable'
+    );
+
+    table.innerHTML = `
+
+        <table class="production-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Date</th>
+                    <th>Pickling</th>
+                    <th>Rolling</th>
+                    <th>Galvanized</th>
+                    <th>Sold</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                ${data.map(item => `
+
+                    <tr>
+
+                        <td>${item.date}</td>
+
+                        <td>
+                            ${item.pickling.toFixed(1)}
+                        </td>
+
+                        <td>
+                            ${item.rolling.toFixed(1)}
+                        </td>
+
+                        <td>
+                            ${item.galvanized.toFixed(1)}
+                        </td>
+
+                        <td>
+                            ${item.sold.toFixed(1)}
+                        </td>
+
+                    </tr>
+
+                `).join('')}
+
+            </tbody>
+
+        </table>
+
+    `;
+}
 /* =====================================
    START
 ===================================== */
