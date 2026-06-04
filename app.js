@@ -1,4 +1,3 @@
-
 async function loadDashboard(){
 
     try{
@@ -9,26 +8,13 @@ async function loadDashboard(){
         const data =
         await response.json();
 
-        console.log(data);
-
-
-console.log(
-    data.cumulativeProductionReport
-);
-
-
-
-       
-
         renderMaterialFlow(
             data.totalProductionTill
         );
 
-              renderProductionChart(
-                 data.cumulativeProductionReport
-              );
-
-
+        renderProductionChart(
+            data.cumulativeProductionReport
+        );
 
     }
 
@@ -43,81 +29,113 @@ console.log(
 
 }
 
-
-/* MATERIAL FLOW */
+/* FACTORY LINES */
 
 function renderMaterialFlow(data){
 
     const flowGrid =
     document.getElementById('flowGrid');
 
-    const factoryInput =
-    data.inputCoilsTon;
+    flowGrid.innerHTML = `
 
-    const items = [
+    <div class="plant-card">
 
-        {
-            label:'INPUT',
-            value:data.inputCoilsTon
-        },
+        <div class="plant-icon">🧪</div>
 
-        {
-            label:'PICKLING',
-            value:data.picklingTon
-        },
-
-        {
-            label:'ROLLING',
-            value:data.rollingTon
-        },
-
-        {
-            label:'GALVANIZING',
-            value:data.galvanizedTon
-        },
-
-        {
-            label:'SOLD',
-            value:data.soldTon
-        }
-
-    ];
-
-    flowGrid.innerHTML =
-    items.map(item => {
-
-        const percent =
-        (item.value / factoryInput) * 100;
-
-        return `
-
-        <div class="flow-card">
-
-            <div class="flow-label">
-                ${item.label}
-            </div>
-
-            <div class="flow-value">
-                ${item.value.toFixed(1)} T
-            </div>
-
-            <div class="flow-progress">
-
-                <div
-                class="flow-progress-bar"
-                style="
-                width:${percent}%">
-                </div>
-
-            </div>
-
+        <div class="plant-title">
+            PICKLING LINE
         </div>
 
-        `;
+        <div class="plant-row">
+            <span>Production</span>
+            <strong>
+                ${data.picklingTon.toFixed(1)} T
+            </strong>
+        </div>
 
-    }).join('');
+        <div class="plant-row">
+            <span>Warehouse</span>
+            <strong>
+                153.3 T
+            </strong>
+        </div>
+
+        <div class="plant-row">
+            <span>Yield</span>
+            <strong class="good">
+                100%
+            </strong>
+        </div>
+
+    </div>
+
+    <div class="plant-card">
+
+        <div class="plant-icon">⚙️</div>
+
+        <div class="plant-title">
+            COLD ROLLING
+        </div>
+
+        <div class="plant-row">
+            <span>Production</span>
+            <strong>
+                ${data.rollingTon.toFixed(1)} T
+            </strong>
+        </div>
+
+        <div class="plant-row">
+            <span>Warehouse</span>
+            <strong>
+                837.2 T
+            </strong>
+        </div>
+
+        <div class="plant-row">
+            <span>Yield</span>
+            <strong class="warning">
+                53.7%
+            </strong>
+        </div>
+
+    </div>
+
+    <div class="plant-card">
+
+        <div class="plant-icon">🏭</div>
+
+        <div class="plant-title">
+            GALVANIZING
+        </div>
+
+        <div class="plant-row">
+            <span>Production</span>
+            <strong>
+                ${data.galvanizedTon.toFixed(1)} T
+            </strong>
+        </div>
+
+        <div class="plant-row">
+            <span>Ready To Ship</span>
+            <strong>
+                757.9 T
+            </strong>
+        </div>
+
+        <div class="plant-row">
+            <span>Yield</span>
+            <strong class="good">
+                97.5%
+            </strong>
+        </div>
+
+    </div>
+
+    `;
 
 }
+
+/* CHART */
 
 function renderProductionChart(data){
 
@@ -144,56 +162,25 @@ function renderProductionChart(data){
     const sold =
     data.map(item => item.sold);
 
-    const option = {
-
-        backgroundColor:'transparent',
+    chart.setOption({
 
         tooltip:{
             trigger:'axis'
         },
 
         legend:{
-            top:0,
             textStyle:{
                 color:'#8EA4C1'
             }
         },
 
-        grid:{
-            left:'3%',
-            right:'3%',
-            bottom:'3%',
-            containLabel:true
-        },
-
         xAxis:{
             type:'category',
-            data:dates,
-            axisLine:{
-                lineStyle:{
-                    color:'#334155'
-                }
-            },
-            axisLabel:{
-                color:'#8EA4C1'
-            }
+            data:dates
         },
 
         yAxis:{
-            type:'value',
-            axisLine:{
-                lineStyle:{
-                    color:'#334155'
-                }
-            },
-            splitLine:{
-                lineStyle:{
-                    color:'rgba(255,255,255,.05)'
-                }
-            },
-            axisLabel:{
-                color:'#8EA4C1'
-            }
+            type:'value'
         },
 
         series:[
@@ -228,14 +215,8 @@ function renderProductionChart(data){
 
         ]
 
-    };
-
-    chart.setOption(option);
+    });
 
 }
-
-
-
-/* START */
 
 loadDashboard();

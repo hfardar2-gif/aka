@@ -20,82 +20,26 @@
 
 <div class="dashboard">
 
-    <!-- SIDEBAR -->
-
     <aside class="sidebar">
 
         <div>
 
             <div class="logo">
-
                 <h1>AKA</h1>
-
-                <span>
-                    COIL PROCESSING
-                </span>
-
+                <span>COIL PROCESSING</span>
             </div>
-
-            <div class="nav">
-
-                <div class="nav-item active">
-                    <div class="nav-icon">⌂</div>
-                    <div>Overview</div>
-                </div>
-
-                <div class="nav-item">
-                    <div class="nav-icon">◉</div>
-                    <div>Production</div>
-                </div>
-
-                <div class="nav-item">
-                    <div class="nav-icon">☰</div>
-                    <div>Warehouse</div>
-                </div>
-
-                <div class="nav-item">
-                    <div class="nav-icon">◌</div>
-                    <div>Sales</div>
-                </div>
-
-                <div class="nav-item">
-                    <div class="nav-icon">⚑</div>
-                    <div>Planning</div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="user-card">
-
-            <strong>
-                AKA Reporting System
-            </strong>
-
-            <br><br>
-
-            <small>
-                Contract Manufacturing Dashboard
-            </small>
 
         </div>
 
     </aside>
 
-    <!-- MAIN -->
-
     <main class="main">
-
-        <!-- HEADER -->
 
         <div class="topbar">
 
             <div class="title">
 
-                <h2>
-                    AKA Coil Processing Report
-                </h2>
+                <h2>AKA Coil Processing Report</h2>
 
                 <p>
                     Contract Manufacturing Progress Dashboard
@@ -105,19 +49,15 @@
 
         </div>
 
-        <!-- FACTORY PROCESS -->
+        <!-- FACTORY LINES -->
 
         <section class="flow-section">
 
             <div class="section-title">
-
-                MATERIAL FLOW
-
+                PRODUCTION LINES
             </div>
 
-            <div id="flowGrid" class="flow-grid">
-
-            </div>
+            <div id="flowGrid" class="plant-grid"></div>
 
         </section>
 
@@ -126,44 +66,38 @@
         <section class="balance-grid">
 
             <div class="balance-tile">
-
-                <div class="tile-label">
-                    FACTORY INPUT
-                </div>
-
-                <div class="tile-value">
-                    2073.75 T
-                </div>
-
+                <div class="tile-label">FACTORY INPUT</div>
+                <div class="tile-value">2073.75 T</div>
             </div>
 
             <div class="balance-tile">
-
-                <div class="tile-label">
-                    FINAL PRODUCT
-                </div>
-
-                <div class="tile-value">
-                    1009.18 T
-                </div>
-
+                <div class="tile-label">FINAL PRODUCT</div>
+                <div class="tile-value">1009.18 T</div>
             </div>
 
             <div class="balance-tile">
+                <div class="tile-label">WAREHOUSE + WIP</div>
+                <div class="tile-value">1035.38 T</div>
+            </div>
 
-                <div class="tile-label">
-                    READY TO SHIP
-                </div>
+            <div class="balance-tile">
+                <div class="tile-label">WIP - SOLD</div>
+                <div class="tile-value">784.12 T</div>
+            </div>
 
-                <div class="tile-value">
-                    757.91 T
-                </div>
+            <div class="balance-tile ready">
+                <div class="tile-label">READY TO SHIP</div>
+                <div class="tile-value">757.91 T</div>
+            </div>
 
+            <div class="balance-tile scrap">
+                <div class="tile-label">TOTAL SCRAP</div>
+                <div class="tile-value">56.13 T</div>
             </div>
 
         </section>
 
-        <!-- PRODUCTION TREND -->
+        <!-- CHART -->
 
         <section class="content-grid">
 
@@ -177,9 +111,7 @@
 
                 </div>
 
-                <div id="productionChart" class="chart">
-
-                </div>
+                <div id="productionChart" class="chart"></div>
 
             </div>
 
@@ -192,5 +124,4 @@
 <script src="app.js"></script>
 
 </body>
-
 </html>
