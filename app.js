@@ -538,6 +538,81 @@ function renderYieldGauge(data){
     );
 
 }
+function renderYieldGauge(data){
+
+    const grid =
+    document.getElementById(
+        'yieldGrid'
+    );
+
+    grid.innerHTML = `
+
+        <div class="yield-card">
+
+            <div class="yield-title">
+                PICKLING YIELD
+            </div>
+
+            <div
+                id="picklingGauge"
+                class="yield-chart">
+            </div>
+
+        </div>
+
+        <div class="yield-card">
+
+            <div class="yield-title">
+                ROLLING YIELD
+            </div>
+
+            <div
+                id="rollingGauge"
+                class="yield-chart">
+            </div>
+
+        </div>
+
+        <div class="yield-card">
+
+            <div class="yield-title">
+                GALVANIZING YIELD
+            </div>
+
+            <div
+                id="galvanizingGauge"
+                class="yield-chart">
+            </div>
+
+        </div>
+
+    `;
+
+    createGauge(
+        'picklingGauge',
+        (
+            data.picklingTon /
+            data.inputCoilsTon
+        ) * 100
+    );
+
+    createGauge(
+        'rollingGauge',
+        (
+            data.rollingTon /
+            data.picklingTon
+        ) * 100
+    );
+
+    createGauge(
+        'galvanizingGauge',
+        (
+            data.galvanizedTon /
+            data.rollingTon
+        ) * 100
+    );
+
+}
 /* =====================================
    START
 ===================================== */
