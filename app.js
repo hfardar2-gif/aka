@@ -11,6 +11,9 @@ async function loadDashboard(){
         renderMaterialFlow(
             data.totalProductionTill
         );
+        renderMaterialFlow(
+    data.totalProductionTill
+);
 
         renderProductionChart(
             data.cumulativeProductionReport
@@ -220,5 +223,52 @@ function renderProductionChart(data){
     });
 
 }
+function renderWarehouse(data){
 
+    const grid =
+    document.getElementById(
+        'warehouseGrid'
+    );
+
+    grid.innerHTML = `
+
+    <div class="warehouse-card">
+
+        <div class="warehouse-label">
+            UNPICKLED
+        </div>
+
+        <div class="warehouse-value">
+            ${data.unpickled.toFixed(1)} T
+        </div>
+
+    </div>
+
+    <div class="warehouse-card">
+
+        <div class="warehouse-label">
+            PICKLED
+        </div>
+
+        <div class="warehouse-value">
+            ${data.pickled.toFixed(1)} T
+        </div>
+
+    </div>
+
+    <div class="warehouse-card">
+
+        <div class="warehouse-label">
+            ROLLED
+        </div>
+
+        <div class="warehouse-value">
+            ${data.rolled.toFixed(1)} T
+        </div>
+
+    </div>
+
+    `;
+
+}
 loadDashboard();
