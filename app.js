@@ -14,7 +14,7 @@ async function loadDashboard() {
         );
          renderYieldGauge(
             data.totalProductionTill
-            );
+         );
 
         renderWarehouse({
 
@@ -31,8 +31,7 @@ async function loadDashboard() {
                 - data.totalProductionTill.galvanizedTon
 
         });
-
-        renderProductionChart(
+         renderProductionChart(
             data.cumulativeProductionReport
         );
         renderKPI(
@@ -41,6 +40,11 @@ async function loadDashboard() {
         renderProductionTable(
     data.cumulativeProductionReport
 );
+renderWIP(
+    data.totalProductionTill
+);
+
+       
 
     }
 
@@ -609,6 +613,82 @@ function createGauge(id,value){
         }]
 
     });
+
+}
+function renderWIP(data){
+
+    const grid =
+    document.getElementById(
+        'wipGrid'
+    );
+
+    const unpickled =
+        data.inputCoilsTon -
+        data.picklingTon;
+
+    const pickled =
+        data.picklingTon -
+        data.rollingTon;
+
+    const rolled =
+        data.rollingTon -
+        data.galvanizedTon;
+
+    const galvanizedStock =
+        data.galvanizedTon -
+        data.soldTon;
+
+    grid.innerHTML = `
+
+        <div class="wip-card">
+
+            <div class="wip-label">
+                UNPICKLED
+            </div>
+
+            <div class="wip-value">
+                ${unpickled.toFixed(1)} T
+            </div>
+
+        </div>
+
+        <div class="wip-card">
+
+            <div class="wip-label">
+                PICKLED WIP
+            </div>
+
+            <div class="wip-value">
+                ${pickled.toFixed(1)} T
+            </div>
+
+        </div>
+
+        <div class="wip-card">
+
+            <div class="wip-label">
+                ROLLED WIP
+            </div>
+
+            <div class="wip-value">
+                ${rolled.toFixed(1)} T
+            </div>
+
+        </div>
+
+        <div class="wip-card">
+
+            <div class="wip-label">
+                FINISHED STOCK
+            </div>
+
+            <div class="wip-value">
+                ${galvanizedStock.toFixed(1)} T
+            </div>
+
+        </div>
+
+    `;
 
 }
 /* =====================================
