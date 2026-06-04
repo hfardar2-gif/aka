@@ -10,13 +10,38 @@
 
 body{
 
-    background:#081018;
+    background:
+    radial-gradient(
+        circle at top left,
+        rgba(0,212,255,.08),
+        transparent 30%
+    ),
+    radial-gradient(
+        circle at bottom right,
+        rgba(59,164,255,.08),
+        transparent 30%
+    ),
+    #081018;
 
     color:white;
 
     font-family:'Inter',sans-serif;
 
 }
+background:
+rgba(15,23,34,.75);
+
+backdrop-filter:
+blur(16px);
+
+-webkit-backdrop-filter:
+blur(16px);
+
+border:
+1px solid rgba(255,255,255,.08);
+
+box-shadow:
+0 10px 40px rgba(0,0,0,.25);
 
 /* =====================================
    LAYOUT
@@ -118,15 +143,29 @@ main{
 
 .topbar{
 
-    margin-bottom:30px;
+    padding:30px;
+
+    border-radius:28px;
+
+    margin-bottom:35px;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(0,212,255,.08),
+        rgba(255,255,255,.02)
+    );
+
+    border:
+    1px solid rgba(255,255,255,.06);
 
 }
 
 .title h2{
 
-    font-size:34px;
-
-    font-weight:800;
+    font-family:
+    'Space Grotesk',
+    sans-serif;
 
 }
 
@@ -526,16 +565,20 @@ main{
 
 }
 
-.kpi-card{
+.summary-blue{
+    border-left:5px solid #00D4FF;
+}
 
-    background:#0F1722;
+.summary-green{
+    border-left:5px solid #00FFAE;
+}
 
-    border-radius:24px;
+.summary-orange{
+    border-left:5px solid #FFB020;
+}
 
-    padding:30px;
-
-    border:1px solid rgba(255,255,255,.05);
-
+.summary-red{
+    border-left:5px solid #FF5B6E;
 }
 
 .kpi-label{
@@ -691,13 +734,17 @@ main{
 
 .yield-card{
 
-    background:#0F1722;
+    background:
+    rgba(15,23,34,.75);
 
     border-radius:24px;
 
-    padding:24px;
+    padding:25px;
 
-    border:1px solid rgba(255,255,255,.05);
+    text-align:center;
+
+    border:
+    1px solid rgba(255,255,255,.06);
 
 }
 
@@ -836,9 +883,13 @@ main{
 
 .report-footer{
 
-    margin-top:60px;
+    margin-top:80px;
 
-    margin-bottom:20px;
+    padding-top:30px;
+
+    text-align:center;
+
+    color:#8EA4C1;
 
 }
 
