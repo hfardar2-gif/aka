@@ -427,3 +427,103 @@ body{
     }
 
 }
+/* WAREHOUSE STATUS */
+
+.warehouse-section{
+
+    margin-bottom:32px;
+
+}
+
+.warehouse-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:20px;
+
+}
+
+.warehouse-card{
+
+    background:#0F1722;
+
+    border-radius:24px;
+
+    padding:28px;
+
+    border:1px solid rgba(255,255,255,.05);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.warehouse-card::before{
+
+    content:'';
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    radial-gradient(
+        circle at top left,
+        rgba(59,164,255,.10),
+        transparent 60%
+    );
+
+}
+
+.warehouse-label{
+
+    position:relative;
+
+    z-index:2;
+
+    color:#8EA4C1;
+
+    font-size:13px;
+
+    letter-spacing:1px;
+
+    margin-bottom:18px;
+
+}
+
+.warehouse-value{
+
+    position:relative;
+
+    z-index:2;
+
+    font-size:44px;
+
+    font-weight:800;
+
+}
+
+@media(max-width:992px){
+
+    .warehouse-grid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .warehouse-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
