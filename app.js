@@ -11,9 +11,6 @@ async function loadDashboard(){
         renderMaterialFlow(
             data.totalProductionTill
         );
-        renderMaterialFlow(
-    data.totalProductionTill
-);
 
         renderProductionChart(
             data.cumulativeProductionReport
