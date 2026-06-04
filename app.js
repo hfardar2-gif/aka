@@ -538,79 +538,77 @@ function renderYieldGauge(data){
     );
 
 }
-function renderYieldGauge(data){
+function createGauge(id,value){
 
-    const grid =
-    document.getElementById(
-        'yieldGrid'
+    const chart =
+    echarts.init(
+        document.getElementById(id)
     );
 
-    grid.innerHTML = `
+    chart.setOption({
 
-        <div class="yield-card">
+        series:[{
 
-            <div class="yield-title">
-                PICKLING YIELD
-            </div>
+            type:'gauge',
 
-            <div
-                id="picklingGauge"
-                class="yield-chart">
-            </div>
+            startAngle:225,
 
-        </div>
+            endAngle:-45,
 
-        <div class="yield-card">
+            min:0,
 
-            <div class="yield-title">
-                ROLLING YIELD
-            </div>
+            max:100,
 
-            <div
-                id="rollingGauge"
-                class="yield-chart">
-            </div>
+            progress:{
+                show:true,
+                width:18
+            },
 
-        </div>
+            axisLine:{
+                lineStyle:{
+                    width:18
+                }
+            },
 
-        <div class="yield-card">
+            pointer:{
+                show:false
+            },
 
-            <div class="yield-title">
-                GALVANIZING YIELD
-            </div>
+            axisTick:{
+                show:false
+            },
 
-            <div
-                id="galvanizingGauge"
-                class="yield-chart">
-            </div>
+            splitLine:{
+                show:false
+            },
 
-        </div>
+            axisLabel:{
+                show:false
+            },
 
-    `;
+            detail:{
+                valueAnimation:true,
+                formatter:'{value}%',
 
-    createGauge(
-        'picklingGauge',
-        (
-            data.picklingTon /
-            data.inputCoilsTon
-        ) * 100
-    );
+                color:'#ffffff',
 
-    createGauge(
-        'rollingGauge',
-        (
-            data.rollingTon /
-            data.picklingTon
-        ) * 100
-    );
+                fontSize:28,
 
-    createGauge(
-        'galvanizingGauge',
-        (
-            data.galvanizedTon /
-            data.rollingTon
-        ) * 100
-    );
+                offsetCenter:[
+                    0,
+                    '10%'
+                ]
+            },
+
+            data:[{
+                value:Number(
+                    value.toFixed(1)
+                )
+            }]
+
+        }]
+
+    });
 
 }
 /* =====================================
