@@ -1,12 +1,13 @@
-async function loadDashboard(){
 
-    try{
+async function loadDashboard() {
+
+    try {
 
         const response =
-        await fetch('./data/latest-report.json');
+            await fetch('./data/latest-report.json');
 
         const data =
-        await response.json();
+            await response.json();
 
         renderMaterialFlow(
             data.totalProductionTill
@@ -32,12 +33,12 @@ async function loadDashboard(){
             data.cumulativeProductionReport
         );
         renderKPI(
-    data.totalProductionTill
-);
+            data.totalProductionTill
+        );
 
     }
 
-    catch(error){
+    catch (error) {
 
         console.error(
             'Dashboard Load Error:',
@@ -52,10 +53,10 @@ async function loadDashboard(){
    FACTORY LINES
 ===================================== */
 
-function renderMaterialFlow(data){
+function renderMaterialFlow(data) {
 
     const flowGrid =
-    document.getElementById('flowGrid');
+        document.getElementById('flowGrid');
 
     flowGrid.innerHTML = `
 
@@ -83,10 +84,10 @@ function renderMaterialFlow(data){
                 <span>Yield</span>
                 <strong class="good">
                     ${(
-                        data.picklingTon /
-                        data.inputCoilsTon *
-                        100
-                    ).toFixed(1)}%
+            data.picklingTon /
+            data.inputCoilsTon *
+            100
+        ).toFixed(1)}%
                 </strong>
             </div>
 
@@ -120,10 +121,10 @@ function renderMaterialFlow(data){
                 <span>Yield</span>
                 <strong class="warning">
                     ${(
-                        data.rollingTon /
-                        data.picklingTon *
-                        100
-                    ).toFixed(1)}%
+            data.rollingTon /
+            data.picklingTon *
+            100
+        ).toFixed(1)}%
                 </strong>
             </div>
 
@@ -157,10 +158,10 @@ function renderMaterialFlow(data){
                 <span>Yield</span>
                 <strong class="good">
                     ${(
-                        data.galvanizedTon /
-                        data.rollingTon *
-                        100
-                    ).toFixed(1)}%
+            data.galvanizedTon /
+            data.rollingTon *
+            100
+        ).toFixed(1)}%
                 </strong>
             </div>
 
@@ -172,30 +173,30 @@ function renderMaterialFlow(data){
 /* =====================================
    kpi 
 ===================================== */
-function renderKPI(data){
+function renderKPI(data) {
 
     const grid =
-    document.getElementById(
-        'kpiGrid'
-    );
+        document.getElementById(
+            'kpiGrid'
+        );
 
     const overallYield =
-    (
-        data.galvanizedTon /
-        data.inputCoilsTon
-    ) * 100;
+        (
+            data.galvanizedTon /
+            data.inputCoilsTon
+        ) * 100;
 
     const salesConversion =
-    (
-        data.soldTon /
-        data.galvanizedTon
-    ) * 100;
+        (
+            data.soldTon /
+            data.galvanizedTon
+        ) * 100;
 
     const utilization =
-    (
-        data.rollingTon /
-        data.inputCoilsTon
-    ) * 100;
+        (
+            data.rollingTon /
+            data.inputCoilsTon
+        ) * 100;
 
     grid.innerHTML = `
 
@@ -242,12 +243,12 @@ function renderKPI(data){
    WAREHOUSE STATUS
 ===================================== */
 
-function renderWarehouse(data){
+function renderWarehouse(data) {
 
     const grid =
-    document.getElementById(
-        'warehouseGrid'
-    );
+        document.getElementById(
+            'warehouseGrid'
+        );
 
     grid.innerHTML = `
 
@@ -288,107 +289,108 @@ function renderWarehouse(data){
         </div>
 
     `;
+}
 
 
 /* =====================================
-   PRODUCTION CHART
+PRODUCTION CHART
 ===================================== */
 
-function renderProductionChart(data){
+function renderProductionChart(data) {
 
     const chartDom =
-    document.getElementById(
-        'productionChart'
-    );
+        document.getElementById(
+            'productionChart'
+        );
 
     const chart =
-    echarts.init(chartDom);
+        echarts.init(chartDom);
 
     const dates =
-    data.map(item => item.date);
+        data.map(item => item.date);
 
     const pickling =
-    data.map(item => item.pickling);
+        data.map(item => item.pickling);
 
     const rolling =
-    data.map(item => item.rolling);
+        data.map(item => item.rolling);
 
     const galvanized =
-    data.map(item => item.galvanized);
+        data.map(item => item.galvanized);
 
     const sold =
-    data.map(item => item.sold);
+        data.map(item => item.sold);
 
     chart.setOption({
 
-        backgroundColor:'transparent',
+        backgroundColor: 'transparent',
 
-        tooltip:{
-            trigger:'axis'
+        tooltip: {
+            trigger: 'axis'
         },
 
-        legend:{
-            top:10,
-            textStyle:{
-                color:'#8EA4C1'
+        legend: {
+            top: 10,
+            textStyle: {
+                color: '#8EA4C1'
             }
         },
 
-        grid:{
-            left:'3%',
-            right:'3%',
-            bottom:'3%',
-            containLabel:true
+        grid: {
+            left: '3%',
+            right: '3%',
+            bottom: '3%',
+            containLabel: true
         },
 
-        xAxis:{
-            type:'category',
-            data:dates,
-            axisLabel:{
-                color:'#8EA4C1'
+        xAxis: {
+            type: 'category',
+            data: dates,
+            axisLabel: {
+                color: '#8EA4C1'
             }
         },
 
-        yAxis:{
-            type:'value',
-            axisLabel:{
-                color:'#8EA4C1'
+        yAxis: {
+            type: 'value',
+            axisLabel: {
+                color: '#8EA4C1'
             },
-            splitLine:{
-                lineStyle:{
-                    color:'rgba(255,255,255,.05)'
+            splitLine: {
+                lineStyle: {
+                    color: 'rgba(255,255,255,.05)'
                 }
             }
         },
 
-        series:[
+        series: [
 
             {
-                name:'Pickling',
-                type:'line',
-                smooth:true,
-                data:pickling
+                name: 'Pickling',
+                type: 'line',
+                smooth: true,
+                data: pickling
             },
 
             {
-                name:'Rolling',
-                type:'line',
-                smooth:true,
-                data:rolling
+                name: 'Rolling',
+                type: 'line',
+                smooth: true,
+                data: rolling
             },
 
             {
-                name:'Galvanized',
-                type:'line',
-                smooth:true,
-                data:galvanized
+                name: 'Galvanized',
+                type: 'line',
+                smooth: true,
+                data: galvanized
             },
 
             {
-                name:'Sold',
-                type:'line',
-                smooth:true,
-                data:sold
+                name: 'Sold',
+                type: 'line',
+                smooth: true,
+                data: sold
             }
 
         ]
@@ -400,5 +402,4 @@ function renderProductionChart(data){
 /* =====================================
    START
 ===================================== */
-
-loadDashboard();
+loadDashboard()
